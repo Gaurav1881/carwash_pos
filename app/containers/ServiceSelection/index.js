@@ -350,7 +350,7 @@ function ServiceSelectionPage(props) {
               variant="contained"
               color="primary"
               className={classes.printButton}
-              disabled={props.baseService ? false : true }
+              disabled={!props.baseService}
             >
               Print
             </Button>

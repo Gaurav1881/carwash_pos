@@ -104,19 +104,26 @@ class ReceiptDisplay extends React.Component {
                 {this.props.baseService ? this.props.baseService.name : ''}
               </td>
               <td className={classes.priceCol}>
-                {this.props.baseService ? "$" + this.props.baseService.price.toFixed(2) : ''}
+                {this.props.baseService
+                  ? `$${this.props.baseService.price.toFixed(2)}`
+                  : ''}
               </td>
             </tr>
-            {this.props.baseService && <Typography className={classes.subheading}>Includes </Typography>}
+            {this.props.baseService && (
+              <Typography className={classes.subheading}>Includes </Typography>
+            )}
             <tr>
-              {this.props.baseService && this.props.baseService.includes.map((included, index) => (
-                <tr key={index}>
-                  <td className={classes.itemCol}>-{included.name}</td>
-                  <td className={classes.priceCol}> </td>
-                </tr>
-              ))}
+              {this.props.baseService &&
+                this.props.baseService.includes.map((included, index) => (
+                  <tr key={index}>
+                    <td className={classes.itemCol}>-{included.name}</td>
+                    <td className={classes.priceCol}> </td>
+                  </tr>
+                ))}
             </tr>
-            {this.props.addOns.length > 0 && <Typography className={classes.subheading}>Add Ons </Typography>}
+            {this.props.addOns.length > 0 && (
+              <Typography className={classes.subheading}>Add Ons </Typography>
+            )}
             {this.props.addOns.map((addon, index) => (
               <tr key={index}>
                 <td className={classes.itemCol}>+{addon.name}</td>
