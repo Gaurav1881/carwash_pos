@@ -12,6 +12,7 @@ import { COMPANY_NAME, HST, SERVICES } from '../../constants';
 const styles = theme => ({
   root: {
     width: '48mm',
+    marginLeft: '5mm',
     minHeight: '50vh',
     backgroundColor: 'white',
     paddingTop: '10px',
@@ -39,6 +40,10 @@ const styles = theme => ({
   },
   companyName: {
     marginBottom: '10px',
+  },
+  subheading: {
+    fontSize: '12px',
+    marginTop: '5px',
   },
 });
 
@@ -94,19 +99,28 @@ class ReceiptDisplay extends React.Component {
             </tr>
           </thead>
           <tbody className={classes.tableBody}>
-            <h4>Service</h4>
             <tr>
               <td className={classes.itemCol}>
                 {this.props.baseService ? this.props.baseService.name : ''}
               </td>
               <td className={classes.priceCol}>
-                {this.props.baseService ? this.props.baseService.price : ''}
+                {this.props.baseService ? "$" + this.props.baseService.price.toFixed(2) : ''}
               </td>
             </tr>
+            {this.props.baseService && <Typography className={classes.subheading}>Includes </Typography>}
+            <tr>
+              {this.props.baseService && this.props.baseService.includes.map((included, index) => (
+                <tr key={index}>
+                  <td className={classes.itemCol}>-{included.name}</td>
+                  <td className={classes.priceCol}> </td>
+                </tr>
+              ))}
+            </tr>
+            {this.props.addOns.length > 0 && <Typography className={classes.subheading}>Add Ons </Typography>}
             {this.props.addOns.map((addon, index) => (
               <tr key={index}>
                 <td className={classes.itemCol}>+{addon.name}</td>
-                <td className={classes.priceCol}>{addon.price}</td>
+                <td className={classes.priceCol}>${addon.price.toFixed(2)}</td>
               </tr>
             ))}
             <tr>
@@ -116,15 +130,15 @@ class ReceiptDisplay extends React.Component {
             </tr>
             <tr>
               <td className={classes.itemCol}>Subtotal</td>
-              <td className={classes.priceCol}>{subtotal.toFixed(2)}</td>
+              <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
             </tr>
             <tr>
               <td className={classes.itemCol}>HST</td>
-              <td className={classes.priceCol}>{hst.toFixed(2)}</td>
+              <td className={classes.priceCol}>${hst.toFixed(2)}</td>
             </tr>
             <tr>
               <td className={classes.itemCol}>Total</td>
-              <td className={classes.priceCol}>{total.toFixed(2)}</td>
+              <td className={classes.priceCol}>${total.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>

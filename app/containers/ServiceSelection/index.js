@@ -239,6 +239,7 @@ function ServiceSelectionPage(props) {
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
+    props.onClickResetAll(null);
   };
 
   const handleReset = () => {
@@ -349,6 +350,7 @@ function ServiceSelectionPage(props) {
               variant="contained"
               color="primary"
               className={classes.printButton}
+              disabled={props.baseService ? false : true }
             >
               Print
             </Button>
