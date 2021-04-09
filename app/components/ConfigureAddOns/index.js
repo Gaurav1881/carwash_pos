@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
   },
   checkboxes: {
-    width: '300px',
-    height: '50px',
+    width: '400px',
+    height: '100px',
     margin: '20px',
     backgroundColor: '#f5f5f5',
     borderRadius: '5px',
@@ -88,7 +88,7 @@ const ConfigureAddOns = props => {
                     {addOn.name}{' '}
                   </Typography>
                   <Typography className={classes.addOnPrice}>
-                    {' '}
+                    {' $'}
                     {addOn.price}{' '}
                   </Typography>
                 </div>

@@ -11,9 +11,9 @@ import { COMPANY_NAME, HST, SERVICES } from '../../constants';
 
 const styles = theme => ({
   root: {
-    width: '48mm',
-    marginLeft: '5mm',
-    minHeight: '50vh',
+    width: '65mm',
+    marginLeft: '0mm',
+    minHeight: '70vh',
     backgroundColor: 'white',
     paddingTop: '10px',
     display: 'flex',
@@ -22,16 +22,16 @@ const styles = theme => ({
   tableDisplay: {
     width: '100%',
     textAlign: 'center',
-    fontSize: '12px',
+    fontSize: '14px',
   },
   header: {
-    fontSize: '14px',
+    fontSize: '12px',
   },
   tableBody: {
     textAlign: 'left',
   },
   itemCol: {
-    width: '36mm',
+    width: '50mm',
   },
   priceCol: {
     textAlign: 'right',
@@ -44,6 +44,12 @@ const styles = theme => ({
   subheading: {
     fontSize: '12px',
     marginTop: '5px',
+    fontWeight: '600',
+  },
+  footer: {
+    marginTop: '20px',
+    fontWeight: 'bold',
+    width: '100%',
   },
 });
 
@@ -116,8 +122,7 @@ class ReceiptDisplay extends React.Component {
               {this.props.baseService &&
                 this.props.baseService.includes.map((included, index) => (
                   <tr key={index}>
-                    <td className={classes.itemCol}>-{included.name}</td>
-                    <td className={classes.priceCol}> </td>
+                    <td className={classes.itemCol} colSpan={2}>-{included.name}</td>
                   </tr>
                 ))}
             </tr>
@@ -148,6 +153,23 @@ class ReceiptDisplay extends React.Component {
               <td className={classes.priceCol}>${total.toFixed(2)}</td>
             </tr>
           </tbody>
+          <tfoot className={classes.footer}>
+            <tr>
+              <td colSpan={2}>
+                <hr />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                This is not an official receipt!
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                Please show this receipt to the cashier for payment
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     );

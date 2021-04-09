@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
   },
   card: {
-    width: '300px',
-    height: '200px',
+    width: '500px',
+    height: 'auto',
     margin: '30px',
     backgroundColor: '#ffffff',
   },
