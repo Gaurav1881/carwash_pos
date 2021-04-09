@@ -127,7 +127,7 @@ export const QUICK_DASHBOARD_AND_CONSOLE_WIPE = {
 };
 
 export const CLEAN_ALL_WINDOWS = {
-  name: 'Clear All Windows',
+  name: 'Clean All Windows',
   price: 0.0,
 };
 
