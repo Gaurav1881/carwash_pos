@@ -19,14 +19,26 @@ const serviceSelectionReducer = (state = initialState, action) =>
     switch (action.type) {
       case SET_BASE_SERVICE:
         draft.baseService = action.payload;
+        draft.addOns = action.payload.addOns.map(addOn => ({
+          ...addOn,
+          quantity: 0,
+        }));
         break;
       case ADD_ADD_ON:
-        draft.addOns = [...state.addOns, action.payload];
+        const index = draft.addOns.findIndex(
+          addon => addon.name === action.payload.name,
+        );
+        if (index === -1) {
+          draft.addOns = [...state.addOns, {...action.payload, quantity: 1}];
+        } else {
+          draft.addOns[index].quantity += 1;
+        }
         break;
       case REMOVE_ADD_ON:
-        draft.addOns = state.addOns.filter(
-          addon => addon.name !== action.payload.name,
-        );
+        const removeIndex = state.addOns.findIndex(addon => addon.name === action.payload.name);
+        if (removeIndex > -1) {
+          draft.addOns[removeIndex].quantity -= 1;
+        }
         break;
       case RESET_ALL:
         draft.baseService = null;

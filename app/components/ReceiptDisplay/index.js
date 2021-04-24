@@ -26,16 +26,20 @@ const styles = theme => ({
   },
   header: {
     fontSize: '12px',
+    textAlign: 'center',
   },
   tableBody: {
     textAlign: 'left',
   },
+  includesCol: {
+    width: '55mm',
+  },
   itemCol: {
-    width: '50mm',
+    width: '38mm',
   },
   priceCol: {
     textAlign: 'right',
-    width: '12mm',
+    width: '14mm',
     verticalAlign: 'top',
   },
   companyName: {
@@ -51,6 +55,14 @@ const styles = theme => ({
     fontWeight: 'bold',
     width: '100%',
   },
+  dashedHr: {
+    marginTop: '30px',
+    borderTop: '1px dashed black',
+  },
+  sectionTwoHeader: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+  }
 });
 
 class ReceiptDisplay extends React.Component {
@@ -79,17 +91,22 @@ class ReceiptDisplay extends React.Component {
     const { classes } = this.props;
 
     let subtotal = 0;
+    let addOnsTotal = 0;
+
     if (this.props.baseService) {
       subtotal += Number(this.props.baseService.price);
     }
 
     this.props.addOns.forEach(addon => {
-      subtotal += Number(addon.price);
+      subtotal += Number(addon.price * addon.quantity);
+      addOnsTotal += Number(addon.price * addon.quantity);
     });
 
     const hst = subtotal * HST;
 
     const total = subtotal + hst;
+
+    const addOns = this.props.addOns.filter(addOn => addOn.quantity > 0);
 
     return (
       <div className={classes.root}>
@@ -99,7 +116,7 @@ class ReceiptDisplay extends React.Component {
               <td colSpan={2} className={classes.header}>
                 <div className={classes.companyName}>
                   {COMPANY_NAME}
-                  <div>{this.state.time.format('MM/DD/YYYY')}</div>
+                  <div>{this.state.time.format('MM/DD/YYYY hh:mm:ss A')}</div>
                 </div>
               </td>
             </tr>
@@ -122,17 +139,17 @@ class ReceiptDisplay extends React.Component {
               {this.props.baseService &&
                 this.props.baseService.includes.map((included, index) => (
                   <tr key={index}>
-                    <td className={classes.itemCol} colSpan={2}>-{included.name}</td>
+                    <td className={classes.includesCol} colSpan={2}>-{included.name}</td>
                   </tr>
                 ))}
             </tr>
-            {this.props.addOns.length > 0 && (
+            {addOns.length > 0 && (
               <Typography className={classes.subheading}>Add Ons </Typography>
             )}
-            {this.props.addOns.map((addon, index) => (
+            {addOns.map((addon, index) => (
               <tr key={index}>
-                <td className={classes.itemCol}>+{addon.name}</td>
-                <td className={classes.priceCol}>${addon.price.toFixed(2)}</td>
+                <td className={classes.itemCol}>+ {addon.quantity}x {addon.name}</td>
+                <td className={classes.priceCol}>${(addon.price * addon.quantity).toFixed(2)}</td>
               </tr>
             ))}
             <tr>
@@ -153,7 +170,7 @@ class ReceiptDisplay extends React.Component {
               <td className={classes.priceCol}>${total.toFixed(2)}</td>
             </tr>
           </tbody>
-          <tfoot className={classes.footer}>
+          <tbody className={classes.footer}>
             <tr>
               <td colSpan={2}>
                 <hr />
@@ -169,7 +186,62 @@ class ReceiptDisplay extends React.Component {
                 Please show this receipt to the cashier for payment
               </td>
             </tr>
-          </tfoot>
+          </tbody>
+          <tbody className={classes.tableBody}>
+          <tr>
+            <td colSpan={2}>
+              <hr className={classes.dashedHr}/>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2} className={classes.sectionTwoHeader}>
+              STORE COPY
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2} className={classes.header}>
+              <div className={classes.companyName}>
+                {COMPANY_NAME}
+                <div>{this.state.time.format('MM/DD/YYYY hh:mm:ss A')}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              {this.props.baseService ? this.props.baseService.name : ''}
+            </td>
+            <td className={classes.priceCol}>
+              {this.props.baseService
+                ? `$${this.props.baseService.price.toFixed(2)}`
+                : ''}
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              AddOns
+            </td>
+            <td className={classes.priceCol}>
+              ${addOnsTotal.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <hr />
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Subtotal</td>
+            <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>HST</td>
+            <td className={classes.priceCol}>${hst.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Total</td>
+            <td className={classes.priceCol}>${total.toFixed(2)}</td>
+          </tr>
+          </tbody>
         </table>
       </div>
     );

@@ -4,41 +4,49 @@ export const HST = 0.13;
 
 export const TIRE_WASH = {
   name: 'Tire Wash',
+  shortform: 'Tire Wash',
   price: 2.99,
 };
 
 export const VACUUM = {
   name: 'Full Vacuum',
+  shortform: 'Full Vacuum',
   price: 3.99,
 };
 
 export const RIM_WIPE = {
   name: 'Rim Wipe',
+  shortform: 'Rim Wipe',
   price: 4.0,
 };
 
 export const MATT_WIPE = {
   name: 'Matt Wipe',
+  shortform: 'Matt Wipe',
   price: 4.0,
 };
 
 export const TRUNK_VACUUM = {
   name: 'Trunk Vacuum',
+  shortform: 'Trunk Vacuum',
   price: 3.0,
 };
 
 export const TRUNK_AND_MATT = {
   name: 'Trunk Matt Wash',
+  shortform: 'Trunk Matt Wash',
   price: 2.0,
 };
 
 export const TIRE_SHINE = {
   name: 'Tire Shine',
+  shortform: 'Tire Shine',
   price: 3.0,
 };
 
 export const DETAIL_VACUUM = {
   name: 'Detail Vacuum',
+  shortform: 'Detail Vacuum',
   price: 10.0,
 };
 
@@ -50,37 +58,50 @@ export const FLOOR_MATT_SHAMPOO = {
 
 export const DASH_SHINE = {
   name: 'Dashboard Shine',
+  shortform: 'Dashboard Shine',
   price: 7.0,
 };
 
 export const DOOR_WIPE = {
   name: 'Door Wipe',
+  shortform: 'Door Wipe',
   price: 10.0,
 };
 
 export const CONSOLE_DETAILING = {
   name: 'Console Detailing',
+  shortform: 'Console Detailing',
   price: 10.0,
 };
 
 export const SEAT_WIPE = {
   name: 'Seat Wipe',
+  shortform: 'Seat Wipe',
   price: 10.0,
 };
 
 export const RIM_DETAILING = {
   name: 'Rim Detailing',
+  shortform: 'Rim Detailing',
   price: 15.0,
 };
 
 export const TRUNK_SHAMPOO = {
-  name: 'Rim Detailing',
+  name: 'Trunk Shampoo',
+  shortform: 'Trunk Shampoo',
   price: 20.0,
 };
 
 export const ODOOR_ELIMINATOR = {
   name: 'Odoor Eliminator',
+  shortform: 'Odoor Eliminator',
   price: 25.0,
+};
+
+export const OTHER_FEE = {
+  name: 'other',
+  shortform: 'other',
+  price: 1.0,
 };
 
 export const ALL_ADD_ONS = [
@@ -99,60 +120,72 @@ export const ALL_ADD_ONS = [
   CONSOLE_DETAILING,
   SEAT_WIPE,
   RIM_DETAILING,
+  OTHER_FEE
 ];
 
 export const NON_WAX_REMOVAL_SOAP = {
   name: 'Wax and Soap Wash',
+  shortform: 'Wax&Soap Wash',
   price: 0.0,
 };
 
 export const POWER_DRY_AND_TOWEL = {
-  name: 'Power Dry & Hand Towel Wiped',
+  name: 'Power Dry & Hand Towel Wipe',
+  shortform: 'Pow Dry & Hnd Twl Wipe',
   price: 0.0,
 };
 
 export const QUICK_RIM_WASH_NO_WIPE = {
   name: 'Quick Rim Wash (No Wipe)',
+  shortform: 'Quick Rim Wash (No Wipe)',
   price: 0.0,
 };
 
 export const VACUUM_INTERIOR_NO_TRUNK = {
   name: 'Vacuum Interior (No Trunk)',
+  shortform: 'Vacuum Interior (No Trunk)',
   price: 0.0,
 };
 
 export const QUICK_DASHBOARD_AND_CONSOLE_WIPE = {
   name: 'Quick Dash & Console Wipe',
+  shortform: 'Quick Dash & Console Wipe',
   price: 0.0,
 };
 
 export const CLEAN_ALL_WINDOWS = {
   name: 'Clean All Windows',
+  shortform: 'Clean All Windows',
   price: 0.0,
 };
 
 export const WASH_FOUR_MATS = {
   name: 'Wash 4 Rubber Mats',
+  shortform: 'Wash 4 Rubber Mats',
   price: 0.0,
 };
 
 export const VACUUM_INTERIOR = {
   name: 'Vacuum Interior',
+  shortform: 'Vacuum Interior',
   price: 0.0,
 };
 
 export const TRIPLE_FOAM_WAX = {
   name: 'Triple Foam Wax',
+  shortform: 'Triple Foam Wax',
   price: 0.0,
 };
 
 export const POWER_DRY_AND_HAND_TOWEL = {
   name: 'Power Dry & Hand Dry',
+  shortform: 'Power Dry & Hand Dry',
   price: 0.0,
 };
 
 export const QUICK_HAND_SPRAY_WAX_DOOR_WIPE = {
   name: 'Quick Hand Spray Wax or Door Wipe',
+  shortform: 'Quick Hand Spray Wax or Door Wipe',
   price: 0.0,
 };
 export const QUICK_HAND_SPRAY_WAX = {
@@ -163,31 +196,37 @@ export const QUICK_HAND_SPRAY_WAX = {
 
 export const WASH_RUBBER_MATS = {
   name: 'Wash Rubber Mats',
+  shortform: 'Wash Rubber Mats',
   price: 0.0,
 };
 
 export const CLEAN_VINYL = {
   name: 'Quick Clean All Vinyl',
+  shortform: 'Quick Clean All Vinyl',
   price: 0.0,
 };
 
 export const POLISH_LEATHER_SEATS = {
   name: 'Polish Leather Seats',
+  shortform: 'Polish Leather Seats',
   price: 0.0,
 };
 
 export const RIM_CLEAN_TIRE_SHINE = {
   name: 'Rim Clean & Tire Shine',
+  shortform: 'Rim Clean & Tire Shine',
   price: 0.0,
 };
 
 export const RIM_CLEAN_AND_WIPE= {
   name: 'Rim Clean & Wipe',
+  shortform: 'Rim Clean & Wipe',
   price: 0.0,
 };
 
 export const FREE_AIR_FRESHENER = {
   name: 'Free Air Freshener',
+  shortform: 'Free Air Freshener',
   price: 0.0,
 };
 

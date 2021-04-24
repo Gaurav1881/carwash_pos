@@ -223,7 +223,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Select your base service', 'Select you add-ons'];
+  return ['Select your base service', 'Select your add-ons'];
 }
 
 const key = 'ServiceSelectionPage';
@@ -268,6 +268,7 @@ function ServiceSelectionPage(props) {
         return (
           <ConfigureAddOns
             baseService={props.baseService}
+            addOns={props.addOns}
             onClickAddAddOn={props.onClickAddAddOn}
             onClickRemoveAddOn={props.onClickRemoveAddOn}
           />
@@ -315,15 +316,6 @@ function ServiceSelectionPage(props) {
                   >
                     Back
                   </Button>
-                  {/* <Button */}
-                  {/*  variant="contained" */}
-                  {/*  color="primary" */}
-                  {/*  onClick={handleNext} */}
-                  {/*  className={classes.button} */}
-                  {/*  disabled={props.baseService ? false : true} */}
-                  {/* > */}
-                  {/*  {activeStep === steps.length - 1 ? 'Finish' : 'Next'} */}
-                  {/* </Button> */}
                 </div>
               </div>
             )}
