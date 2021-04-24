@@ -11,9 +11,10 @@ import { COMPANY_NAME, HST, SERVICES } from '../../constants';
 
 const styles = theme => ({
   root: {
+    marginTop: '20px',
     width: '65mm',
     marginLeft: '0mm',
-    minHeight: '40vh',
+    minHeight: '30vh',
     backgroundColor: 'white',
     paddingTop: '10px',
     display: 'flex',
@@ -65,7 +66,7 @@ const styles = theme => ({
   }
 });
 
-class ReceiptDisplay extends React.Component {
+class StoreReceiptDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,70 +123,46 @@ class ReceiptDisplay extends React.Component {
             </tr>
           </thead>
           <tbody className={classes.tableBody}>
-            <tr>
-              <td className={classes.itemCol}>
-                {this.props.baseService ? this.props.baseService.name : ''}
-              </td>
-              <td className={classes.priceCol}>
-                {this.props.baseService
-                  ? `$${this.props.baseService.price.toFixed(2)}`
-                  : ''}
-              </td>
-            </tr>
-            {this.props.baseService && (
-              <Typography className={classes.subheading}>Includes </Typography>
-            )}
-            <tr>
-              {this.props.baseService &&
-                this.props.baseService.includes.map((included, index) => (
-                  <tr key={index}>
-                    <td className={classes.includesCol} colSpan={2}>-{included.name}</td>
-                  </tr>
-                ))}
-            </tr>
-            {addOns.length > 0 && (
-              <Typography className={classes.subheading}>Add Ons </Typography>
-            )}
-            {addOns.map((addon, index) => (
-              <tr key={index}>
-                <td className={classes.itemCol}>+ {addon.quantity}x {addon.name}</td>
-                <td className={classes.priceCol}>${(addon.price * addon.quantity).toFixed(2)}</td>
-              </tr>
-            ))}
-            <tr>
-              <td colSpan={2}>
-                <hr />
-              </td>
-            </tr>
-            <tr>
-              <td className={classes.itemCol}>Subtotal</td>
-              <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
-            </tr>
-            <tr>
-              <td className={classes.itemCol}>HST</td>
-              <td className={classes.priceCol}>${hst.toFixed(2)}</td>
-            </tr>
-            <tr>
-              <td className={classes.itemCol}>Total</td>
-              <td className={classes.priceCol}>${total.toFixed(2)}</td>
-            </tr>
-          </tbody>
-          <tbody className={classes.footer}>
-            <tr>
-              <td colSpan={2}>
-                <hr />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                This is not an official receipt!
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                Please show this receipt to the cashier for payment
-              </td>
-            </tr>
+          <tr>
+            <td colSpan={2} className={classes.sectionTwoHeader}>
+              STORE COPY
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              {this.props.baseService ? this.props.baseService.name : ''}
+            </td>
+            <td className={classes.priceCol}>
+              {this.props.baseService
+                ? `$${this.props.baseService.price.toFixed(2)}`
+                : ''}
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              AddOns
+            </td>
+            <td className={classes.priceCol}>
+              ${addOnsTotal.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <hr />
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Subtotal</td>
+            <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>HST</td>
+            <td className={classes.priceCol}>${hst.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Total</td>
+            <td className={classes.priceCol}>${total.toFixed(2)}</td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -197,4 +174,4 @@ class ReceiptDisplay extends React.Component {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withStyles(styles)(ReceiptDisplay);
+export default withStyles(styles)(StoreReceiptDisplay);
