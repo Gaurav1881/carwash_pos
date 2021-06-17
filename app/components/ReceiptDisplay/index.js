@@ -13,7 +13,7 @@ const styles = theme => ({
   root: {
     width: '65mm',
     marginLeft: '0mm',
-    minHeight: '40vh',
+    minHeight: '70vh',
     backgroundColor: 'white',
     paddingTop: '10px',
     display: 'flex',
@@ -186,6 +186,61 @@ class ReceiptDisplay extends React.Component {
                 Please show this receipt to the cashier for payment
               </td>
             </tr>
+          </tbody>
+          <tbody className={classes.tableBody}>
+          <tr>
+            <td colSpan={2}>
+              <hr className={classes.dashedHr}/>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2} className={classes.sectionTwoHeader}>
+              STORE COPY
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2} className={classes.header}>
+              <div className={classes.companyName}>
+                {COMPANY_NAME}
+                <div>{this.state.time.format('MM/DD/YYYY hh:mm:ss A')}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              {this.props.baseService ? this.props.baseService.name : ''}
+            </td>
+            <td className={classes.priceCol}>
+              {this.props.baseService
+                ? `$${this.props.baseService.price.toFixed(2)}`
+                : ''}
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>
+              AddOns
+            </td>
+            <td className={classes.priceCol}>
+              ${addOnsTotal.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <hr />
+            </td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Subtotal</td>
+            <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>HST</td>
+            <td className={classes.priceCol}>${hst.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td className={classes.itemCol}>Total</td>
+            <td className={classes.priceCol}>${total.toFixed(2)}</td>
+          </tr>
           </tbody>
         </table>
       </div>

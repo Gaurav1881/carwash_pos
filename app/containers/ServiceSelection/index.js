@@ -25,7 +25,6 @@ import { useInjectReducer } from '../../utils/injectReducer';
 import { selectBaseService, selectAddOns } from './selectors';
 import { addAddOn, removeAddOn, resetAll, setBaseService } from './actions';
 import ReceiptDisplay from '../../components/ReceiptDisplay';
-import StoreReceiptDisplay from '../../components/StoreReceiptDisplay';
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -204,7 +203,6 @@ const useStyles = makeStyles(theme => ({
   },
   receiptWrapper: {
     display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -232,8 +230,6 @@ const key = 'ServiceSelectionPage';
 
 function ServiceSelectionPage(props) {
   const componentRef = useRef();
-  const componentRef2 = useRef();
-  const secondPrint = useRef();
 
   useInjectReducer({ key, reducer });
 
@@ -256,10 +252,6 @@ function ServiceSelectionPage(props) {
   };
 
   const handleAfterPrint = () => {
-    document.getElementById('secondPrint').click();
-  };
-
-  const handleAfterPrint2 = () => {
     setActiveStep(0);
     props.onClickResetAll(null);
   };
@@ -341,11 +333,6 @@ function ServiceSelectionPage(props) {
             addOns={props.addOns}
             ref={componentRef}
           />
-          <StoreReceiptDisplay
-            baseService={props.baseService}
-            addOns={props.addOns}
-            ref={componentRef2}
-          />
         </div>
         <ReactToPrint
           trigger={() => (
@@ -362,20 +349,6 @@ function ServiceSelectionPage(props) {
           )}
           content={() => componentRef.current}
           onAfterPrint={() => handleAfterPrint()}
-        />
-        <ReactToPrint
-          trigger={() => (
-            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-            // to the root node of the returned component as it will be overwritten.
-            <Button
-              style={{display: 'none'}}
-              id='secondPrint'
-            >
-              Print
-            </Button>
-          )}
-          content={() => componentRef2.current}
-          onAfterPrint={() => handleAfterPrint2()}
         />
       </Grid>
     </Grid>
