@@ -25,6 +25,7 @@ import { useInjectReducer } from '../../utils/injectReducer';
 import { selectBaseService, selectAddOns } from './selectors';
 import { addAddOn, removeAddOn, resetAll, setBaseService } from './actions';
 import ReceiptDisplay from '../../components/ReceiptDisplay';
+import NumberTicket from '../../components/NumberTicket';
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -220,6 +221,28 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     textAlign: 'center',
   },
+  numberTicketButton: {
+    width: '60px',
+    height: '60px',
+    backgroundColor: '#383c5f',
+    color: 'white',
+    fontSize: '24px',
+    marginLeft: '50px',
+  },
+  numberTicketButtonFirst: {
+    width: '60px',
+    height: '60px',
+    backgroundColor: '#383c5f',
+    color: 'white',
+    fontSize: '24px',
+    marginLeft: '10px',
+  },
+  numberTicketWrapper: {
+    padding: '20px 20px 20px 20px',
+    backgroundColor: 'white',
+    width: '100%',
+    justifyContent: 'center',
+  },
 }));
 
 function getSteps() {
@@ -230,6 +253,12 @@ const key = 'ServiceSelectionPage';
 
 function ServiceSelectionPage(props) {
   const componentRef = useRef();
+  const componentButton1 = useRef();
+  const componentButton2 = useRef();
+  const componentButton3 = useRef();
+  const componentButton4 = useRef();
+  const componentButton5 = useRef();
+  const componentButton6 = useRef();
 
   useInjectReducer({ key, reducer });
 
@@ -284,13 +313,98 @@ function ServiceSelectionPage(props) {
     <Grid container direction="row">
       <Grid item xs={10} className={classes.selectionPanel}>
         <div>
-          <Stepper alternativeLabel activeStep={activeStep}>
-            {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+          <div className={classes.numberTicketWrapper}>
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButtonFirst}
+                >
+                  1
+                </Button>
+              )}
+              content={() => componentButton1.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  2
+                </Button>
+              )}
+              content={() => componentButton2.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  3
+                </Button>
+              )}
+              content={() => componentButton3.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  4
+                </Button>
+              )}
+              content={() => componentButton4.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  5
+                </Button>
+              )}
+              content={() => componentButton5.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  6
+                </Button>
+              )}
+              content={() => componentButton6.current}
+            />
+            <NumberTicket number={1} ref={componentButton1} />
+            <NumberTicket number={2} ref={componentButton2} />
+            <NumberTicket number={3} ref={componentButton3} />
+            <NumberTicket number={4} ref={componentButton4} />
+            <NumberTicket number={5} ref={componentButton5} />
+            <NumberTicket number={6} ref={componentButton6} />
+          </div>
           <div>
             {activeStep === steps.length ? (
               <div>
