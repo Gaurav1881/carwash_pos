@@ -20,4 +20,10 @@ const selectAddOns = () =>
     state => state.addOns,
   );
 
-export { selectServiceSelection, selectBaseService, selectAddOns };
+const selectWashLog = () =>
+  createSelector(
+    selectServiceSelection,
+    state => state.washLog,
+  );
+
+export { selectServiceSelection, selectBaseService, selectAddOns, selectWashLog };

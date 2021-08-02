@@ -22,9 +22,14 @@ import ConfigureAddOns from '../../components/ConfigureAddOns';
 
 import reducer from './reducer';
 import { useInjectReducer } from '../../utils/injectReducer';
-import { selectBaseService, selectAddOns } from './selectors';
-import { addAddOn, removeAddOn, resetAll, setBaseService } from './actions';
+import { selectBaseService, selectAddOns, selectWashLog } from './selectors';
+import { addAddOn, addToLogs, removeAddOn, resetAll, setBaseService } from './actions';
 import ReceiptDisplay from '../../components/ReceiptDisplay';
+import { IconButton } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
+import PinInput from 'react-pin-input';
+import { ADMIN_PIN } from '../../constants';
 import NumberTicket from '../../components/NumberTicket';
 
 const QontoConnector = withStyles({
@@ -201,6 +206,7 @@ const useStyles = makeStyles(theme => ({
   },
   rightPane: {
     textAlign: 'center',
+    height: '100vh',
   },
   receiptWrapper: {
     display: 'flex',
@@ -229,6 +235,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: '24px',
     marginLeft: '50px',
   },
+  settingsButton: {
+    alignSelf: 'bottom',
+    marginLeft: '20px',
+  },
   numberTicketButtonFirst: {
     width: '60px',
     height: '60px',
@@ -242,6 +252,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     width: '100%',
     justifyContent: 'center',
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: '5px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 
@@ -264,6 +285,9 @@ function ServiceSelectionPage(props) {
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [pin, setPin] = React.useState();
+
   const steps = getSteps();
 
   const handleBack = () => {
@@ -282,7 +306,30 @@ function ServiceSelectionPage(props) {
 
   const handleAfterPrint = () => {
     setActiveStep(0);
+    props.onAddToLogs();
     props.onClickResetAll(null);
+  };
+
+  const onCloseModal = () => {
+    setModalOpen(false);
+    setPin();
+  };
+
+  const renderLogs = () => {
+    return <div>
+      {
+        Object.keys(props.washLogs).map((key) => (
+          <div>
+            <h3> { key } </h3>
+            {
+              Object.keys(props.washLogs[key]).map((washType) => (
+                <h4> {props.washLogs[key][washType]} x {washType} </h4>
+              ))
+            }
+          </div>
+        ))
+      }
+    </div>
   };
 
   function getStepContent(step) {
@@ -438,8 +485,10 @@ function ServiceSelectionPage(props) {
       </Grid>
       <Grid item xs={2} className={classes.rightPane}>
         <Typography className={classes.receiptHeader}>
-          {' '}
-          Receipt View{' '}
+          Receipt View
+          <IconButton className="settingsButton" onClick={() => setModalOpen(true)}>
+            <SettingsIcon/>
+          </IconButton>
         </Typography>
         <div className={classes.receiptWrapper}>
           <ReceiptDisplay
@@ -465,6 +514,37 @@ function ServiceSelectionPage(props) {
           onAfterPrint={() => handleAfterPrint()}
         />
       </Grid>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={modalOpen}
+        onClose={onCloseModal}
+        closeAfterTransition
+        // BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={modalOpen}>
+          <div className={classes.paper}>
+            <PinInput
+              length={7}
+              initialValue=""
+              secret
+              type="numeric"
+              inputMode="number"
+              style={{padding: '10px'}}
+              inputStyle={{borderColor: '#bdbdbd', borderRadius: '5px'}}
+              inputFocusStyle={{borderColor: '#4e4e4e'}}
+              onChange={(value, index) => {setPin(value)}}
+              autoSelect={true}
+              regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+            />
+            {pin == ADMIN_PIN && <div>{renderLogs()} </div>}
+          </div>
+        </Fade>
+      </Modal>
     </Grid>
   );
 }
@@ -472,6 +552,7 @@ function ServiceSelectionPage(props) {
 const mapStateToProps = createStructuredSelector({
   baseService: selectBaseService(),
   addOns: selectAddOns(),
+  washLogs: selectWashLog(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -481,6 +562,9 @@ export function mapDispatchToProps(dispatch) {
     },
     onClickResetAll: () => {
       dispatch(resetAll());
+    },
+    onAddToLogs: () => {
+      dispatch(addToLogs());
     },
     onClickAddAddOn: payload => {
       dispatch(addAddOn(payload));

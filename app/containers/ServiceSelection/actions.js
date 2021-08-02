@@ -1,6 +1,7 @@
 import {
   ADD_ADD_ON,
   REMOVE_ADD_ON,
+  ADD_TO_LOGS,
   RESET_ALL,
   SET_BASE_SERVICE,
 } from './constants';
@@ -22,4 +23,8 @@ export const removeAddOn = payload => ({
 
 export const resetAll = () => ({
   type: RESET_ALL,
+});
+
+export const addToLogs = () => ({
+  type: ADD_TO_LOGS,
 });

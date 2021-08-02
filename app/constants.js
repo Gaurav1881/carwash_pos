@@ -1,3 +1,5 @@
+export const ADMIN_PIN = 7794821;
+
 export const COMPANY_NAME = 'The Royal Carwash';
 
 export const HST = 0.13;
@@ -98,6 +100,12 @@ export const ODOOR_ELIMINATOR = {
   price: 25.0,
 };
 
+export const TRUCK_SUV_FEE = {
+  name: 'Truck/Suv Fee',
+  shortform: 'Truck/Suv Fee',
+  price: 10.0,
+};
+
 export const OTHER_FEE = {
   name: 'other',
   shortform: 'other',
@@ -120,7 +128,8 @@ export const ALL_ADD_ONS = [
   CONSOLE_DETAILING,
   SEAT_WIPE,
   RIM_DETAILING,
-  OTHER_FEE
+  TRUCK_SUV_FEE,
+  OTHER_FEE,
 ];
 
 export const NON_WAX_REMOVAL_SOAP = {
@@ -244,7 +253,7 @@ export const SERVICES = [
     addOns: ALL_ADD_ONS,
   },
   {
-    name: 'The Royal Hand Spray & Wash',
+    name: 'The Royal Hand Spray Wax & Wash',
     price: 29.99,
     includes: [
       NON_WAX_REMOVAL_SOAP,
@@ -258,7 +267,7 @@ export const SERVICES = [
   },
   {
     name: 'The Royal Regular Wash',
-    price: 23.99,
+    price: 23.89,
     includes: [
       VACUUM_INTERIOR_NO_TRUNK,
       WASH_FOUR_MATS,
@@ -285,7 +294,7 @@ export const SERVICES = [
     addOns: ALL_ADD_ONS,
   },
   {
-    name: 'The Royal Wipe & Wash',
+    name: 'The Royal Wipe & Wax',
     price: 37.17,
     includes: [
       VACUUM_INTERIOR,
@@ -313,7 +322,7 @@ export const SERVICES = [
       TRIPLE_FOAM_WAX,
       POWER_DRY_AND_HAND_TOWEL,
       RIM_CLEAN_TIRE_SHINE,
-      FREE_AIR_FRESHENER
+      FREE_AIR_FRESHENER,
     ],
     addOns: ALL_ADD_ONS,
   },
