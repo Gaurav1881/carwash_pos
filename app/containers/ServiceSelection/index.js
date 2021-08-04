@@ -228,11 +228,11 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
   },
   numberTicketButton: {
-    width: '60px',
+    width: '80px',
     height: '60px',
     backgroundColor: '#383c5f',
     color: 'white',
-    fontSize: '24px',
+    fontSize: '20px',
     marginLeft: '50px',
   },
   settingsButton: {
@@ -275,7 +275,9 @@ const key = 'ServiceSelectionPage';
 function ServiceSelectionPage(props) {
   const componentRef = useRef();
   const componentButton1 = useRef();
-  const componentButton2 = useRef();
+  const componentButton2D = useRef();
+  const componentButton2W = useRef();
+  const componentButton2DS = useRef();
   const componentButton3 = useRef();
   const componentButton4 = useRef();
   const componentButton5 = useRef();
@@ -384,10 +386,38 @@ function ServiceSelectionPage(props) {
                   color="white"
                   className={classes.numberTicketButton}
                 >
-                  2
+                  2D
                 </Button>
               )}
-              content={() => componentButton2.current}
+              content={() => componentButton2D.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  2W
+                </Button>
+              )}
+              content={() => componentButton2W.current}
+            />
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  2DS
+                </Button>
+              )}
+              content={() => componentButton2DS.current}
             />
             <ReactToPrint
               trigger={() => (
@@ -446,8 +476,9 @@ function ServiceSelectionPage(props) {
               content={() => componentButton6.current}
             />
             <NumberTicket number={1} ref={componentButton1} />
-            <NumberTicket number={2} ref={componentButton2} />
-            <NumberTicket number={3} ref={componentButton3} />
+            <NumberTicket number="2D" ref={componentButton2D} />
+            <NumberTicket number="2W" ref={componentButton2W} />
+            <NumberTicket number="2DS" ref={componentButton2DS} />
             <NumberTicket number={4} ref={componentButton4} />
             <NumberTicket number={5} ref={componentButton5} />
             <NumberTicket number={6} ref={componentButton6} />

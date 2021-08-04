@@ -25,7 +25,7 @@ const styles = theme => ({
     fontSize: '14px',
   },
   header: {
-    fontSize: '200px',
+    fontSize: '130px',
     textAlign: 'center',
   },
   tableBody: {
