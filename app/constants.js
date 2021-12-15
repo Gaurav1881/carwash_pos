@@ -25,7 +25,7 @@ export const RIM_WIPE = {
 export const MATT_WIPE = {
   name: 'Matt Wipe',
   shortform: 'Matt Wipe',
-  price: 4.0,
+  price: 2.0,
 };
 
 export const TRUNK_VACUUM = {
@@ -103,7 +103,7 @@ export const ODOOR_ELIMINATOR = {
 export const TRUCK_SUV_FEE = {
   name: 'Truck/Suv Fee',
   shortform: 'Truck/Suv Fee',
-  price: 10.0,
+  price: 6.0,
 };
 
 export const OTHER_FEE = {
@@ -145,8 +145,8 @@ export const POWER_DRY_AND_TOWEL = {
 };
 
 export const QUICK_RIM_WASH_NO_WIPE = {
-  name: 'Quick Rim Wash (No Wipe)',
-  shortform: 'Quick Rim Wash (No Wipe)',
+  name: 'Rim Wash (No Wipe)',
+  shortform: 'Rim Wash (No Wipe)',
   price: 0.0,
 };
 
@@ -239,83 +239,115 @@ export const FREE_AIR_FRESHENER = {
   price: 0.0,
 };
 
+export const EXTERIOR_WASH = {
+  name: 'Exterior Wash',
+  shortform: 'Exterior Wash',
+  price: 0.0,
+};
+
+export const POWER_AND_TOWEL_DRY = {
+  name: 'Power & Towel Dry',
+  shortform: 'Power & Towel Dry',
+  price: 0.0,
+};
+
+export const FOAM_WAX = {
+  name: 'Foam Wax',
+  shortform: 'Foam Wax',
+  price: 0.0,
+};
+
+export const CLEAN_DOOR_PANELS_WINDOWS = {
+  name: 'Clean Door Panels & Windows',
+  shortform: 'Door Panels & Windows',
+  price: 0.0,
+};
+
+export const QUICK_RIM_WASH = {
+  name: 'Quick Rim Wash',
+  shortform: 'Quick Rim Wash',
+  price: 0.0,
+};
+
+export const RIM_WASH = {
+  name: 'Rim Wash',
+  shortform: 'Rim Wash',
+  price: 0.0,
+};
+
+export const OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE = {
+  name: 'Optional Handspray Wax or Doorwipe & Shine',
+  shortform: 'opt. Handspray Wax/Doorwipe&Shine',
+  price: 0.0,
+};
+
+
 export const SERVICES = [
   {
     name: 'The Regular Exterior Wash',
     shortForm: 'Reg Ext Wash',
-    price: 12.39,
+    price: 13.27,
     includes: [
-      NON_WAX_REMOVAL_SOAP,
-      POWER_DRY_AND_TOWEL,
-      QUICK_RIM_WASH_NO_WIPE,
+      EXTERIOR_WASH,
       TIRE_SHINE,
+      POWER_AND_TOWEL_DRY,
+      RIM_WIPE,
+      FOAM_WAX,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Royal Hand Spray Wax & Wash',
-    price: 29.99,
+    price: 29.20,
     includes: [
-      NON_WAX_REMOVAL_SOAP,
-      POWER_DRY_AND_HAND_TOWEL,
-      TIRE_SHINE,
-      QUICK_HAND_SPRAY_WAX,
+      EXTERIOR_WASH,
+      FOAM_WAX,
+      POWER_AND_TOWEL_DRY,
       RIM_CLEAN_AND_WIPE,
-      TRIPLE_FOAM_WAX
-    ],
-    addOns: ALL_ADD_ONS,
-  },
-  {
-    name: 'The Royal Regular Wash',
-    price: 23.89,
-    includes: [
-      VACUUM_INTERIOR_NO_TRUNK,
-      WASH_FOUR_MATS,
-      NON_WAX_REMOVAL_SOAP,
-      QUICK_DASHBOARD_AND_CONSOLE_WIPE,
-      CLEAN_ALL_WINDOWS
+      TRIPLE_FOAM_WAX,
+      CLEAN_DOOR_PANELS_WINDOWS,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Royal Super Wash',
-    price: 26.54,
+    price: 28.32,
     includes: [
       VACUUM_INTERIOR_NO_TRUNK,
-      WASH_FOUR_MATS,
-      NON_WAX_REMOVAL_SOAP,
+      EXTERIOR_WASH,
       QUICK_DASHBOARD_AND_CONSOLE_WIPE,
       CLEAN_ALL_WINDOWS,
-      TRIPLE_FOAM_WAX,
+      FOAM_WAX,
       POWER_DRY_AND_HAND_TOWEL,
-      QUICK_RIM_WASH_NO_WIPE,
-      TIRE_SHINE,
+      QUICK_RIM_WASH,
+      TIRE_SHINE
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Royal Wipe & Wax',
-    price: 37.17,
+    price: 39.82,
     includes: [
       VACUUM_INTERIOR,
       WASH_FOUR_MATS,
-      NON_WAX_REMOVAL_SOAP,
+      EXTERIOR_WASH,
       QUICK_DASHBOARD_AND_CONSOLE_WIPE,
-      TRIPLE_FOAM_WAX,
-      POWER_DRY_AND_HAND_TOWEL,
-      TIRE_SHINE,
       CLEAN_ALL_WINDOWS,
-      QUICK_HAND_SPRAY_WAX_DOOR_WIPE,
+      POWER_DRY_AND_HAND_TOWEL,
+      FOAM_WAX,
+      RIM_WASH,
+      TIRE_SHINE,
+      OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Royal Lux Wipe & Shine',
-    price: 59.99,
+    price: 61.95,
     includes: [
       VACUUM_INTERIOR,
       WASH_RUBBER_MATS,
-      NON_WAX_REMOVAL_SOAP,
+      EXTERIOR_WASH,
       CLEAN_VINYL,
       CLEAN_ALL_WINDOWS,
       POLISH_LEATHER_SEATS,
