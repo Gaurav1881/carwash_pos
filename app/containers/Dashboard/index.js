@@ -22,8 +22,10 @@ import { DAEMON } from 'utils/constants';
 import saga from './saga';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, Label } from 'recharts';
-import { Card, Typography } from '@material-ui/core';
+import { Card, Fade, Modal, Typography } from '@material-ui/core';
+import PinInput from 'react-pin-input';
 
+import { ADMIN_PIN } from '../../constants';
 
 const withSaga = injectSaga({ key: 'logs', saga, mode: DAEMON });
 
@@ -255,6 +257,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'white',
     },
     graphCard: {
         backgroundColor: theme.palette.background.paper,
@@ -270,7 +273,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '5px',
         boxShadow: theme.shadows[5],
         height: '150px',
-        width: '250px',
+        width: '300px',
         margin: '10px',
         padding: '20px',
     },
@@ -290,7 +293,7 @@ function DashboardPage(props) {
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
-    const [modalOpen, setModalOpen] = React.useState(false);
+    const [modalOpen, setModalOpen] = React.useState(true);
     const [pin, setPin] = React.useState();
 
     if (props.logs.length == 0) {
@@ -374,16 +377,44 @@ function DashboardPage(props) {
         return 0;
     }
 
+    const getRevenueToday = () => {
+        let sum = 0
+        if (props.logs.length > 0) {
+            const todays_logs = props.logs[6].logs
+            todays_logs.forEach(log => {
+                sum += log.price
+            })
+        }
+        return sum;
+    }
+
+    const handleSetPin = (value) => {
+        setPin(value);
+        if (value == ADMIN_PIN) {
+            setModalOpen(false);
+        }
+    }
+
     return (
         <Grid className={classes.dashboardPanal}>
-            <Card className={classes.quickData}>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
-                    Cars Washed Today
-                </Typography>
-                <Typography className={classes.boldNumber} color="text.secondary" align='center' gutterBottom>
-                    {getCarsWashedToday()}
-                </Typography>
-            </Card>
+            <div className={classes.flexBox}>
+                <Card className={classes.quickData}>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
+                        Cars Washed Today
+                    </Typography>
+                    <Typography className={classes.boldNumber} color="text.secondary" align='center' gutterBottom>
+                        {getCarsWashedToday()}
+                    </Typography>
+                </Card>
+                <Card className={classes.quickData}>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
+                        Estimate Pre-tax Revenue
+                    </Typography>
+                    <Typography className={classes.boldNumber} color="text.secondary" align='center' gutterBottom>
+                        ${getRevenueToday()}
+                    </Typography>
+                </Card>
+            </div>
             <div className={classes.flexBox}>
                 <Card className={classes.graphCard}>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
@@ -398,6 +429,38 @@ function DashboardPage(props) {
                     {renderWeeklyProfitChart()}
                 </Card>
             </div>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={modalOpen}
+                // onClose={onCloseModal}
+                closeAfterTransition
+                // BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={modalOpen}>
+                    <div className={classes.paper}>
+                        <PinInput
+                            length={7}
+                            initialValue=""
+                            secret
+                            type="numeric"
+                            inputMode="number"
+                            style={{ padding: '10px' }}
+                            inputStyle={{ borderColor: '#bdbdbd', borderRadius: '5px' }}
+                            inputFocusStyle={{ borderColor: '#4e4e4e' }}
+                            onChange={(value, index) => {
+                                handleSetPin(value);
+                            }}
+                            autoSelect
+                            regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                        />
+                    </div>
+                </Fade>
+            </Modal>
         </Grid>
     );
 }

@@ -56,12 +56,15 @@ const styles = theme => ({
     width: '100%',
   },
   dashedHr: {
-    marginTop: '30px',
+    marginTop: '10px',
     borderTop: '1px dashed black',
   },
   sectionTwoHeader: {
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  loyalty: {
+    padding: '20px',
   }
 });
 
@@ -184,6 +187,23 @@ class ReceiptDisplay extends React.Component {
             <tr>
               <td colSpan={2}>
                 Please show this receipt to the cashier for payment
+              </td>
+            </tr>
+          </tbody>
+          <tbody className={classes.loyalty}>
+            <tr>
+              <td colSpan={2}>
+                <hr />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <b>LOYALTY PROGRAM</b>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                If you get 5 car washes within a year then the 6th one is free!
               </td>
             </tr>
           </tbody>
