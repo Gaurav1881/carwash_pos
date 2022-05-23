@@ -7,7 +7,8 @@ import request from 'utils/request';
 
 export function* attemptPushToDB(action) {
 
-    const API_URL = `https://carwash-pos-backend.vercel.app`;
+    const API_URL = `https://carwash-pos-backend.herokuapp.com`;
+    // const API_URL = `http://localhost:8000`;
 
     const requestUrl = `${API_URL}/api/logs`;
 

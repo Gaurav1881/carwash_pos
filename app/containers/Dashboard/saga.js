@@ -11,7 +11,9 @@ import { setServiceLogs } from './actions';
 export function* attemptGetLogs(action) {
     let date = moment().format('YYYY-MM-DD');
 
-    const API_URL = `https://carwash-pos-backend.vercel.app`;
+    const API_URL = `https://carwash-pos-backend.herokuapp.com`;
+
+    // const API_URL = `http://localhost:8000`;
 
     const requestUrl = `${API_URL}/api/logs?date=` + encodeURIComponent(date);
 

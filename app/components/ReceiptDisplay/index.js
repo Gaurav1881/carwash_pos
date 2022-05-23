@@ -173,6 +173,24 @@ class ReceiptDisplay extends React.Component {
               <td className={classes.priceCol}>${total.toFixed(2)}</td>
             </tr>
           </tbody>
+          <tbody className={classes.loyalty}>
+            <tr>
+              <td colSpan={2}>
+                <hr />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <b>LOYALTY PROGRAM</b>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                If you get 5 car washes within a year then the 6th one is free! To track your
+                washes please provide the cashier with your phone number
+              </td>
+            </tr>
+          </tbody>
           <tbody className={classes.footer}>
             <tr>
               <td colSpan={2}>
@@ -187,23 +205,6 @@ class ReceiptDisplay extends React.Component {
             <tr>
               <td colSpan={2}>
                 Please show this receipt to the cashier for payment
-              </td>
-            </tr>
-          </tbody>
-          <tbody className={classes.loyalty}>
-            <tr>
-              <td colSpan={2}>
-                <hr />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <b>LOYALTY PROGRAM</b>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                If you get 5 car washes within a year then the 6th one is free!
               </td>
             </tr>
           </tbody>
