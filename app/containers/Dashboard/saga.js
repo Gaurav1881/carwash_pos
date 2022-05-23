@@ -26,7 +26,7 @@ export function* attemptGetLogs(action) {
         };
         let result = yield call(request, requestUrl, options);
 
-        results = results.sort((a, b) => {
+        result = result.sort((a, b) => {
             moment(a.date, 'YYYY-MM-DD').isAfter(moment(b.date, 'YYYY-MM-DD'))
         })
 
