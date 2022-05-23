@@ -17,20 +17,32 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Grid from '@material-ui/core/Grid';
 import ReactToPrint from 'react-to-print';
+import { IconButton } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
+import PinInput from 'react-pin-input';
+import injectSaga from 'utils/injectSaga';
+import { DAEMON } from 'utils/constants';
 import DisplayServices from '../../components/DisplayServices';
 import ConfigureAddOns from '../../components/ConfigureAddOns';
 
 import reducer from './reducer';
 import { useInjectReducer } from '../../utils/injectReducer';
 import { selectBaseService, selectAddOns, selectWashLog } from './selectors';
-import { addAddOn, addToLogs, removeAddOn, resetAll, setBaseService } from './actions';
+import {
+  addAddOn,
+  addToLogs,
+  removeAddOn,
+  resetAll,
+  setBaseService,
+} from './actions';
 import ReceiptDisplay from '../../components/ReceiptDisplay';
-import { IconButton } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
-import Fade from '@material-ui/core/Fade';
-import PinInput from 'react-pin-input';
 import { ADMIN_PIN } from '../../constants';
 import NumberTicket from '../../components/NumberTicket';
+
+import saga from './saga';
+
+const withSaga = injectSaga({ key: 'logs', saga, mode: DAEMON });
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -306,9 +318,9 @@ function ServiceSelectionPage(props) {
     props.onClickSetBaseService(service);
   };
 
-  const handleAfterPrint = () => {
+  const handleAfterPrint = log => {
     setActiveStep(0);
-    props.onAddToLogs();
+    props.onAddToLogs(log);
     props.onClickResetAll(null);
   };
 
@@ -317,22 +329,22 @@ function ServiceSelectionPage(props) {
     setPin();
   };
 
-  const renderLogs = () => {
-    return <div>
-      {
-        Object.keys(props.washLogs).map((key) => (
-          <div>
-            <h3> { key } </h3>
-            {
-              Object.keys(props.washLogs[key]).map((washType) => (
-                <h4> {props.washLogs[key][washType]} x {washType} </h4>
-              ))
-            }
-          </div>
-        ))
+  const renderLogs = () => (
+    <div>
+      {Object.keys(props.washLogs).map(key => (
+        <div>
+          <h3> {key} </h3>
+          {Object.keys(props.washLogs[key]).map(washType => (
+            <h4>
+              {' '}
+              {props.washLogs[key][washType]} x {washType}{' '}
+            </h4>
+          ))}
+        </div>
+      ))}
       }
     </div>
-  };
+  );
 
   function getStepContent(step) {
     switch (step) {
@@ -517,8 +529,11 @@ function ServiceSelectionPage(props) {
       <Grid item xs={2} className={classes.rightPane}>
         <Typography className={classes.receiptHeader}>
           Receipt View
-          <IconButton className="settingsButton" onClick={() => setModalOpen(true)}>
-            <SettingsIcon/>
+          <IconButton
+            className="settingsButton"
+            onClick={() => setModalOpen(true)}
+          >
+            <SettingsIcon />
           </IconButton>
         </Typography>
         <div className={classes.receiptWrapper}>
@@ -542,7 +557,7 @@ function ServiceSelectionPage(props) {
             </Button>
           )}
           content={() => componentRef.current}
-          onAfterPrint={() => handleAfterPrint()}
+          onAfterPrint={() => handleAfterPrint(props.baseService)}
         />
       </Grid>
       <Modal
@@ -565,11 +580,13 @@ function ServiceSelectionPage(props) {
               secret
               type="numeric"
               inputMode="number"
-              style={{padding: '10px'}}
-              inputStyle={{borderColor: '#bdbdbd', borderRadius: '5px'}}
-              inputFocusStyle={{borderColor: '#4e4e4e'}}
-              onChange={(value, index) => {setPin(value)}}
-              autoSelect={true}
+              style={{ padding: '10px' }}
+              inputStyle={{ borderColor: '#bdbdbd', borderRadius: '5px' }}
+              inputFocusStyle={{ borderColor: '#4e4e4e' }}
+              onChange={(value, index) => {
+                setPin(value);
+              }}
+              autoSelect
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
             {pin == ADMIN_PIN && <div>{renderLogs()} </div>}
@@ -594,8 +611,8 @@ export function mapDispatchToProps(dispatch) {
     onClickResetAll: () => {
       dispatch(resetAll());
     },
-    onAddToLogs: () => {
-      dispatch(addToLogs());
+    onAddToLogs: log => {
+      dispatch(addToLogs(log));
     },
     onClickAddAddOn: payload => {
       dispatch(addAddOn(payload));
@@ -614,4 +631,5 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
+  withSaga,
 )(ServiceSelectionPage);

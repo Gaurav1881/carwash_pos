@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import { logSaga } from './containers/ServiceSelection/saga';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;

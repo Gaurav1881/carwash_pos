@@ -13,6 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import { makeStyles } from '@material-ui/core';
 import ServiceSelectionPage from '../ServiceSelection';
+import DashboardPage from '../Dashboard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,6 +29,7 @@ export default function App() {
     <div className={classes.root}>
       <Switch>
         <Route exact path="/" component={ServiceSelectionPage} />
+        <Route exact path="/dashboard" component={DashboardPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </div>

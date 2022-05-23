@@ -33,21 +33,23 @@ const serviceSelectionReducer = (state = initialState, action) =>
           addon => addon.name === action.payload.name,
         );
         if (index === -1) {
-          draft.addOns = [...state.addOns, {...action.payload, quantity: 1}];
+          draft.addOns = [...state.addOns, { ...action.payload, quantity: 1 }];
         } else {
           draft.addOns[index].quantity += 1;
         }
         break;
       case REMOVE_ADD_ON:
-        const removeIndex = state.addOns.findIndex(addon => addon.name === action.payload.name);
+        const removeIndex = state.addOns.findIndex(
+          addon => addon.name === action.payload.name,
+        );
         if (removeIndex > -1) {
           draft.addOns[removeIndex].quantity -= 1;
         }
         break;
       case ADD_TO_LOGS:
-        let dateKey = moment().format('MM-DD-YYYY');
+        const dateKey = moment().format('YYYY-MM-DD');
         if (draft.washLog[dateKey]) {
-          let data = draft.washLog[dateKey];
+          const data = draft.washLog[dateKey];
           if (data[draft.baseService.name]) {
             data[draft.baseService.name] += 1;
           } else {

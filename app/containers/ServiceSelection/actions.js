@@ -25,6 +25,7 @@ export const resetAll = () => ({
   type: RESET_ALL,
 });
 
-export const addToLogs = () => ({
+export const addToLogs = payload => ({
   type: ADD_TO_LOGS,
+  payload,
 });
