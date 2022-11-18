@@ -181,8 +181,8 @@ export const VACUUM_INTERIOR = {
 };
 
 export const TRIPLE_FOAM_WAX = {
-  name: 'Triple Foam Wax',
-  shortform: 'Triple Foam Wax',
+  name: 'Triple Foam / Hot Sealer Wax',
+  shortform: 'Tpl Foam / Hot Wax',
   price: 0.0,
 };
 
@@ -201,7 +201,6 @@ export const QUICK_HAND_SPRAY_WAX = {
   name: 'Quick Hand Spray Wax',
   price: 0.0,
 };
-
 
 export const WASH_RUBBER_MATS = {
   name: 'Wash Rubber Mats',
@@ -227,7 +226,7 @@ export const RIM_CLEAN_TIRE_SHINE = {
   price: 0.0,
 };
 
-export const RIM_CLEAN_AND_WIPE= {
+export const RIM_CLEAN_AND_WIPE = {
   name: 'Rim Clean & Wipe',
   shortform: 'Rim Clean & Wipe',
   price: 0.0,
@@ -281,27 +280,20 @@ export const OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE = {
   price: 0.0,
 };
 
-
 export const SERVICES = [
   {
     name: 'The Regular Exterior Wash',
     shortForm: 'Reg Ext Wash',
     price: 13.27,
-    includes: [
-      EXTERIOR_WASH,
-      TIRE_SHINE,
-      POWER_AND_TOWEL_DRY,
-      RIM_WIPE,
-      FOAM_WAX,
-    ],
+    includes: [EXTERIOR_WASH, POWER_AND_TOWEL_DRY],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Royal Hand Spray Wax & Wash',
-    price: 29.20,
+    price: 29.2,
     includes: [
       EXTERIOR_WASH,
-      FOAM_WAX,
+      QUICK_HAND_SPRAY_WAX,
       POWER_AND_TOWEL_DRY,
       RIM_CLEAN_AND_WIPE,
       TRIPLE_FOAM_WAX,
@@ -311,16 +303,14 @@ export const SERVICES = [
   },
   {
     name: 'The Royal Super Wash',
-    price: 28.32,
+    price: 30.97,
     includes: [
       VACUUM_INTERIOR_NO_TRUNK,
       EXTERIOR_WASH,
       QUICK_DASHBOARD_AND_CONSOLE_WIPE,
       CLEAN_ALL_WINDOWS,
-      FOAM_WAX,
       POWER_DRY_AND_HAND_TOWEL,
       QUICK_RIM_WASH,
-      TIRE_SHINE
     ],
     addOns: ALL_ADD_ONS,
   },
@@ -334,10 +324,10 @@ export const SERVICES = [
       QUICK_DASHBOARD_AND_CONSOLE_WIPE,
       CLEAN_ALL_WINDOWS,
       POWER_DRY_AND_HAND_TOWEL,
-      FOAM_WAX,
+      TRIPLE_FOAM_WAX,
       RIM_WASH,
       TIRE_SHINE,
-      OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE
+      OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE,
     ],
     addOns: ALL_ADD_ONS,
   },
