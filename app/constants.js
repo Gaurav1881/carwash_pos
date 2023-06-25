@@ -5,9 +5,15 @@ export const COMPANY_NAME = 'The Royal Carwash';
 export const HST = 0.13;
 
 export const TIRE_WASH = {
-  name: 'Tire Wash',
-  shortform: 'Tire Wash',
+  name: 'Tire Shine',
+  shortform: 'Tire Shine',
   price: 2.99,
+};
+
+export const MATT_WASH = {
+  name: 'Matt Wash',
+  shortform: 'Matt Wash',
+  price: 2.0,
 };
 
 export const VACUUM = {
@@ -106,6 +112,12 @@ export const TRUCK_SUV_FEE = {
   price: 6.0,
 };
 
+export const EXTRA_VACUUM = {
+  name: 'Extra Vacuum',
+  shortform: 'Extra Vacuum',
+  price: 5.0,
+};
+
 export const OTHER_FEE = {
   name: 'other',
   shortform: 'other',
@@ -114,14 +126,15 @@ export const OTHER_FEE = {
 
 export const ALL_ADD_ONS = [
   MATT_WIPE,
+  MATT_WASH,
   RIM_WIPE,
   TRUNK_AND_MATT,
   TRUNK_SHAMPOO,
   TRUNK_VACUUM,
   TIRE_SHINE,
-  TIRE_WASH,
   DETAIL_VACUUM,
   FLOOR_MATT_SHAMPOO,
+  EXTRA_VACUUM,
   DASH_SHINE,
   DOOR_WIPE,
   ODOOR_ELIMINATOR,

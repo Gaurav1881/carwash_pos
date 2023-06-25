@@ -31,6 +31,9 @@ const styles = theme => ({
   tableBody: {
     textAlign: 'left',
   },
+  detail: {
+    fontSize: '20px',
+  }
 });
 
 class NumberTicket extends React.Component {
@@ -40,6 +43,8 @@ class NumberTicket extends React.Component {
 
   render() {
     const { classes } = this.props;
+
+    const addOns = this.props.addOns.filter(addOn => addOn.quantity > 0);
 
     return (
       <div className={classes.root}>
@@ -51,7 +56,12 @@ class NumberTicket extends React.Component {
                 {this.props.number}
               </div>
             </td>
-          </tr>
+          </tr >
+          {addOns.map((addon, index) => (
+              <tr key={index}  className={classes.detail}>
+                <td className={classes.itemCol}>+ {addon.quantity}x {addon.name}</td>
+              </tr>
+            ))}
           </thead>
         </table>
       </div>

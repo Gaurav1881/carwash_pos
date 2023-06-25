@@ -487,13 +487,14 @@ function ServiceSelectionPage(props) {
               )}
               content={() => componentButton6.current}
             />
-            <NumberTicket number={1} ref={componentButton1} />
-            <NumberTicket number="2D" ref={componentButton2D} />
-            <NumberTicket number="2W" ref={componentButton2W} />
-            <NumberTicket number="2DS" ref={componentButton2DS} />
-            <NumberTicket number={4} ref={componentButton4} />
-            <NumberTicket number={5} ref={componentButton5} />
-            <NumberTicket number={6} ref={componentButton6} />
+            <NumberTicket number={1} addOns={props.addOns} ref={componentButton1} />
+            <NumberTicket number="2D"  addOns={props.addOns} ref={componentButton2D} />
+            <NumberTicket number="2W"  addOns={props.addOns} ref={componentButton2W} />
+            <NumberTicket number="2DS" addOns={props.addOns}  ref={componentButton2DS} />
+            <NumberTicket number="3" addOns={props.addOns}  ref={componentButton3} />
+            <NumberTicket number={4}  addOns={props.addOns} ref={componentButton4} />
+            <NumberTicket number={5} addOns={props.addOns}  ref={componentButton5} />
+            <NumberTicket number={6}  addOns={props.addOns} ref={componentButton6} />
           </div>
           <div>
             {activeStep === steps.length ? (
