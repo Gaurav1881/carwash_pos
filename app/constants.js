@@ -424,7 +424,7 @@ export const ONE_STAGE_PAINT_CORRECTION = {
 export const SERVICES = [
   {
     name: '#1 The Royal Deluxe Wash',
-    price: 48.62,
+    price: 48.67,
     includes: [
       VACUUM_INTERIOR,
       CLEAN_VINYL,
