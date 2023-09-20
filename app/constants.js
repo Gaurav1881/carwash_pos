@@ -258,8 +258,8 @@ export const EXTERIOR_WASH = {
 };
 
 export const POWER_AND_TOWEL_DRY = {
-  name: 'Power & Towel Dry',
-  shortform: 'Power & Towel Dry',
+  name: 'Power Dry & Hand Towel Dry',
+  shortform: 'Power Dry & Hand Towel Dry',
   price: 0.0,
 };
 
@@ -293,71 +293,278 @@ export const OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE = {
   price: 0.0,
 };
 
+
+export const FRESH_WATER_EXTERIOR = {
+  name: 'Fresh Water Exterior',
+  shortform: 'Fresh Water Exterior',
+  price: 0.0,
+};
+
+export const POWER_WASH_MUD_GUARD_AND_RIM = {
+  name: 'Power Wash Mud Guard & Rim',
+  shortform: 'P.W Mud Guard & Rim',
+  price: 0.0,
+};
+
+export const TIRE_SHINE_AND_RIME_WHIPE = {
+  name: 'Tire Shine & Rim Wipe',
+  shortform: 'Tire Shine & Rim Wipe',
+  price: 0.0,
+};
+
+export const TIRE_SHINE_AND_RIME_CLEAN = {
+  name: 'Tire Shine & Rim Clean',
+  shortform: 'Tire Shine & Rim Clean',
+  price: 0.0,
+};
+
+export const CERAMIC_WAX_AND_TRIPLE_FOAM = {
+  name: 'Ceramic Wax & Triple Foam',
+  shortform: 'Ceramic Wax & Triple Foam',
+  price: 0.0,
+};
+
+export const CERAMIC_HAND_SPRAY_WAX = {
+  name: 'Ceramic Hand Spray Wax',
+  shortform: 'Ceramic Hand Spray Wax',
+  price: 0.0,
+};
+
+
+export const DOOR_JAMS_WIPE = {
+  name: 'Door Jams Wipe',
+  shortform: 'Door Jams Wipe',
+  price: 0.0,
+};
+
+export const QUICK_DASHBOARD_CONSOLE_AND_DOOR_WIPE = {
+  name: 'Quick Wipe of Dash, Console, and Doors',
+  shortform: 'Quick Wipe Dash/Console/Doors',
+  price: 0.0,
+};
+
+export const RIM_WASH_WIPE_TIRE_SHINE = {
+  name: 'Rim Wash, Wipe & Tire Shine',
+  shortform: 'Rim Wash, Wipe & Tire Shine',
+  price: 0.0,
+};
+
+export const WIPE_ALL_VINYL = {
+  name: 'Wipe All Vinyl',
+  shortform: 'Wipe All Vinyl',
+  price: 0.0,
+};
+
+export const CLEAN_ALL_VINYL = {
+  name: 'Clean All Vinyl',
+  shortform: 'Clean All Vinyl',
+  price: 0.0,
+};
+
+export const VACUUM_FLOOR = {
+  name: 'Vacuum Floor',
+  shortform: 'Vacuum Floor',
+  price: 0.0,
+};
+
+export const CERAMIC_COATING_LEATHER = {
+  name: 'Ceramic Coating On Leather',
+  shortform: 'Ceramic Coating On Leather',
+  price: 0.0,
+};
+
+export const SHAMPOO_SEATS_OR_FLOOR_OR_CONDITION_SEATS = {
+  name: 'Smp seats or floor or cnd seats',
+  shortform: 'Smp seats or floor or cnd seats',
+  price: 0.0,
+};
+
+export const SHAMPOOING_AND_STEAMING_INTERIOR = {
+  name: 'Shampoo & Stream Interior',
+  shortform: 'Shampoo & Stream Interior',
+  price: 0.0,
+};
+
+export const FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS = {
+  name: 'Fabric Seat Guard/Cnd Leather Seats',
+  shortform: 'Fabric Seat Guard/Cnd Leather Seats',
+  price: 0.0,
+};
+
+export const MINIMAL_RUST_FLEAS_REMOVAL = {
+  name: 'Minimal Rust Fleas Removal',
+  shortform: 'Minimal Rust Fleas Removal',
+  price: 0.0,
+};
+
+export const SHAMPOO_CARPET_AND_MAT = {
+  name: 'Shampoo Carpet & Rubber Mats',
+  shortform: 'Shampoo Carpet & Rubber Mats',
+  price: 0.0,
+};
+
+export const PAINT_SEALANT = {
+  name: 'Paint Sealant',
+  shortform: 'Paint Sealant',
+  price: 0.0,
+};
+
+export const VINYL_SHINE = {
+  name: 'Vinyl Shine',
+  shortform: 'Vinyl Shine',
+  price: 0.0,
+};
+
+export const ONE_STAGE_PAINT_CORRECTION = {
+  name: 'One Stage Paint Correction',
+  shortform: 'One Stage Paint Correction',
+  price: 0.0,
+};
+
 export const SERVICES = [
   {
-    name: 'The Regular Exterior Wash',
-    shortForm: 'Reg Ext Wash',
-    price: 13.27,
-    includes: [EXTERIOR_WASH, POWER_AND_TOWEL_DRY],
-    addOns: ALL_ADD_ONS,
-  },
-  {
-    name: 'The Royal Hand Spray Wax & Wash',
-    price: 29.2,
+    name: '#1 The Royal Lux Wipe & Shine',
+    price: 61.95,
     includes: [
-      EXTERIOR_WASH,
-      QUICK_HAND_SPRAY_WAX,
-      POWER_AND_TOWEL_DRY,
-      RIM_CLEAN_AND_WIPE,
-      TRIPLE_FOAM_WAX,
-      CLEAN_DOOR_PANELS_WINDOWS,
-    ],
-    addOns: ALL_ADD_ONS,
-  },
-  {
-    name: 'The Royal Super Wash',
-    price: 30.97,
-    includes: [
-      VACUUM_INTERIOR_NO_TRUNK,
-      EXTERIOR_WASH,
+      VACUUM_INTERIOR,
+      CLEAN_VINYL,
+      WASH_RUBBER_MATS,
+      CERAMIC_WAX_AND_TRIPLE_FOAM,
       QUICK_DASHBOARD_AND_CONSOLE_WIPE,
-      CLEAN_ALL_WINDOWS,
       POWER_DRY_AND_HAND_TOWEL,
-      QUICK_RIM_WASH,
+      RIM_WASH_WIPE_TIRE_SHINE,
+      CLEAN_ALL_WINDOWS,
+      FRESH_WATER_EXTERIOR
     ],
     addOns: ALL_ADD_ONS,
   },
   {
-    name: 'The Royal Wipe & Wax',
+    name: '#2 The Royal Wipe & Wax',
     price: 39.82,
     includes: [
       VACUUM_INTERIOR,
       WASH_FOUR_MATS,
-      EXTERIOR_WASH,
-      QUICK_DASHBOARD_AND_CONSOLE_WIPE,
-      CLEAN_ALL_WINDOWS,
-      POWER_DRY_AND_HAND_TOWEL,
-      TRIPLE_FOAM_WAX,
-      RIM_WASH,
-      TIRE_SHINE,
-      OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE,
+      CERAMIC_WAX_AND_TRIPLE_FOAM,
+      QUICK_DASHBOARD_CONSOLE_AND_DOOR_WIPE,
+      FRESH_WATER_EXTERIOR,
+      RIM_WASH_WIPE_TIRE_SHINE
     ],
     addOns: ALL_ADD_ONS,
   },
   {
-    name: 'The Royal Lux Wipe & Shine',
-    price: 61.95,
+    name: '#3 The Royal Super Wash',
+    price: 30.97,
     includes: [
+      VACUUM_INTERIOR_NO_TRUNK,
+      FRESH_WATER_EXTERIOR,
+      QUICK_DASHBOARD_AND_CONSOLE_WIPE,
+      WASH_FOUR_MATS,
+      POWER_DRY_AND_HAND_TOWEL,
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: '#4 All Exterior Works',
+    shortForm: 'All Exterior Works',
+    price: 30.97,
+    includes: [FRESH_WATER_EXTERIOR,
+       CERAMIC_WAX_AND_TRIPLE_FOAM,
+       POWER_AND_TOWEL_DRY,
+       POWER_WASH_MUD_GUARD_AND_RIM,
+       TIRE_SHINE_AND_RIME_WHIPE,
+       CERAMIC_HAND_SPRAY_WAX,
+       DOOR_JAMS_WIPE],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: '#5 Exterior Grand Slam',
+    shortForm: 'Exterior Grand Slam',
+    price: 19.47,
+    includes: [FRESH_WATER_EXTERIOR,
+       POWER_AND_TOWEL_DRY,
+       POWER_WASH_MUD_GUARD_AND_RIM,
+       TIRE_SHINE_AND_RIME_WHIPE],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: '#6 Basic Exterior Wash',
+    shortForm: 'Bsc Ext Wash',
+    price: 13.27,
+    includes: [FRESH_WATER_EXTERIOR, POWER_AND_TOWEL_DRY],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: 'Platnum Works',
+    price: 249.00,
+    includes: [
+      ONE_STAGE_PAINT_CORRECTION,
+      FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS,
+      MINIMAL_RUST_FLEAS_REMOVAL,
+      FRESH_WATER_EXTERIOR,
+      POWER_DRY_AND_HAND_TOWEL,
+      POWER_WASH_MUD_GUARD_AND_RIM,
+      TIRE_SHINE_AND_RIME_CLEAN,
+      SHAMPOOING_AND_STEAMING_INTERIOR,
+      SHAMPOO_CARPET_AND_MAT,
+      VACUUM_INTERIOR,
+      VINYL_SHINE
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: 'Gold Works',
+    price: 249.00,
+    includes: [
+      FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS,
+      MINIMAL_RUST_FLEAS_REMOVAL,
+      FRESH_WATER_EXTERIOR,
+      POWER_DRY_AND_HAND_TOWEL,
+      POWER_WASH_MUD_GUARD_AND_RIM,
+      TIRE_SHINE_AND_RIME_CLEAN,
+      SHAMPOOING_AND_STEAMING_INTERIOR,
+      SHAMPOO_CARPET_AND_MAT,
+      VACUUM_INTERIOR,
+      PAINT_SEALANT,
+      VINYL_SHINE
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: 'Silver Works',
+    price: 160.00,
+    includes: [
+      SHAMPOOING_AND_STEAMING_INTERIOR,
+      SHAMPOO_CARPET_AND_MAT,
+      FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS,
+      VACUUM_INTERIOR,
+      FRESH_WATER_EXTERIOR,
+      POWER_DRY_AND_HAND_TOWEL,
+      POWER_WASH_MUD_GUARD_AND_RIM,
+      TIRE_SHINE_AND_RIME_CLEAN
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: 'The Budget Special',
+    price: 99.00,
+    includes: [
+      SHAMPOO_SEATS_OR_FLOOR_OR_CONDITION_SEATS,
+      CLEAN_ALL_VINYL,
       VACUUM_INTERIOR,
       WASH_RUBBER_MATS,
-      EXTERIOR_WASH,
-      CLEAN_VINYL,
-      CLEAN_ALL_WINDOWS,
-      POLISH_LEATHER_SEATS,
-      TRIPLE_FOAM_WAX,
-      POWER_DRY_AND_HAND_TOWEL,
-      RIM_CLEAN_TIRE_SHINE,
-      FREE_AIR_FRESHENER,
+      TIRE_SHINE_AND_RIME_WHIPE
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: 'Leather Protection',
+    price: 150.00,
+    includes: [
+      VACUUM_FLOOR,
+      MATT_WASH,
+      WIPE_ALL_VINYL,
+      CERAMIC_COATING_LEATHER,
+      RIM_WASH_WIPE_TIRE_SHINE
     ],
     addOns: ALL_ADD_ONS,
   },
