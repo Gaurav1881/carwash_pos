@@ -423,8 +423,8 @@ export const ONE_STAGE_PAINT_CORRECTION = {
 
 export const SERVICES = [
   {
-    name: '#1 The Royal Lux Wipe & Shine',
-    price: 61.95,
+    name: '#1 The Royal Deluxe Wash',
+    price: 48.62,
     includes: [
       VACUUM_INTERIOR,
       CLEAN_VINYL,
@@ -439,7 +439,7 @@ export const SERVICES = [
     addOns: ALL_ADD_ONS,
   },
   {
-    name: '#2 The Royal Wipe & Wax',
+    name: '#2 The Royal Doors & Dash',
     price: 39.82,
     includes: [
       VACUUM_INTERIOR,
