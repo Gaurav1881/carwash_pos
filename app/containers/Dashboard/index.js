@@ -25,6 +25,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChar
 import { Card, Fade, Modal, Typography } from '@material-ui/core';
 import PinInput from 'react-pin-input';
 
+import { TableContainer, Table, Paper, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { ADMIN_PIN } from '../../constants';
 
 const withSaga = injectSaga({ key: 'logs', saga, mode: DAEMON });
@@ -88,8 +90,8 @@ function QontoStepIcon(props) {
             {completed ? (
                 <Check className={classes.completed} />
             ) : (
-                    <div className={classes.circle} />
-                )}
+                <div className={classes.circle} />
+            )}
         </div>
     );
 }
@@ -268,6 +270,15 @@ const useStyles = makeStyles(theme => ({
         margin: '10px',
         padding: '20px',
     },
+    logTable: {
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: '5px',
+        boxShadow: theme.shadows[5],
+        height: '100%',
+        width: '1000px',
+        margin: '10px',
+        padding: '20px',
+    },
     quickData: {
         backgroundColor: theme.palette.background.paper,
         borderRadius: '5px',
@@ -283,7 +294,15 @@ const useStyles = makeStyles(theme => ({
     },
     flexBox: {
         display: 'flex',
-    }
+    },
+    flexRow: {
+        display: 'flex',
+        width: "100%",
+        justifyContent: 'space-between',
+    },
+    flaggedRow: {
+        backgroundColor: '#ffcccc',
+    },
 }));
 
 const key = 'DashboardPage';
@@ -295,9 +314,33 @@ function DashboardPage(props) {
     const [activeStep, setActiveStep] = React.useState(0);
     const [modalOpen, setModalOpen] = React.useState(true);
     const [pin, setPin] = React.useState();
+    const [tableIndex, setTableIndex] = React.useState(6);
 
     if (props.logs.length == 0) {
         props.getLogs();
+    }
+
+    function compareLogs(a, b) {
+        if (!a.date && !b.date) {
+            return 0;
+        }
+        if (!a.date && b.date) {
+            return 1
+        }
+        if (a.date && !b.date) {
+            return -1;
+        }
+
+        const a_date = new Date(a.date).getTime();
+        const b_date = new Date(b.date).getTime();
+
+        if (a_date - b_date > 0) {
+            return -1;
+        }
+        if (b_date - a_date > 0) {
+            return 1;
+        }
+        return 0;
     }
 
     const renderWeeklyCountChart = () => {
@@ -331,6 +374,113 @@ function DashboardPage(props) {
                 <Line type="monotone" dataKey="count" stroke="#82ca9d" />
             </LineChart>
         );
+    }
+
+    const compareForFlag = (rowa, rowb) => {
+        if (rowa.date && rowb.date) {
+            const rowatime = new Date(rowa.date).getTime();
+            const rowbtime = new Date(rowb.date).getTime();
+
+            return (rowatime - rowbtime < 180000);
+        }
+        return false;
+    }
+
+    const renderDataTable = () => {
+        if (props.logs.length == 0) return;
+
+        let rows = props.logs[tableIndex].logs;
+
+        rows.sort(compareLogs);
+
+        rows = rows.map((row, index) => {
+            if (index + 1 < rows.length) {
+                return {
+                    ...row,
+                    flagged: compareForFlag(row, rows[index + 1])
+                }
+            } else {
+                return {
+                    ...row,
+                    flagged: false
+                }
+            }
+        });
+
+        const getDateTime = (datetime) => {
+            const d = new Date(datetime);
+            return d.toLocaleString();
+        }
+
+        return <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 550 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="left"> Date </TableCell>
+                        <TableCell align="left">Wash Name</TableCell>
+                        <TableCell align="left">Wash Price</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row, i) => (
+                        <TableRow
+                            key={i}
+                            sx={{
+                                '&:last-child td, &:last-child th': { border: 0 }
+                            }}
+                            className={row.flagged ? classes.flaggedRow : ''}
+                        >
+                            <TableCell component="th" scope="row" align="left">
+                                {row.date ? getDateTime(row.date) : ''} {row.flagged}
+                            </TableCell>
+                            <TableCell align="left">{row.name}</TableCell>
+                            <TableCell align="left">{row.price}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+
+    }
+
+    const renderFrequencyTable = () => {
+        if (props.logs.length == 0) return;
+
+        let set = {};
+
+        props.logs[tableIndex].logs.forEach(log => {
+            let n = log.name;
+            if (n in set) {
+                set[n] = set[n] + 1
+            } else {
+                set[n] = 1
+            }
+        })
+
+        return <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 500 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="left"> Wash Type </TableCell>
+                        <TableCell align="left">Wash Frequency</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {Object.entries(set).map((r, i) => (
+                        <TableRow
+                            key={i}
+                            sx={{
+                                '&:last-child td, &:last-child th': { border: 0 }
+                            }}
+                        >
+                            <TableCell align="left">{r[0]}</TableCell>
+                            <TableCell align="left">{r[1]}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+
     }
 
     const renderWeeklyProfitChart = () => {
@@ -428,6 +578,36 @@ function DashboardPage(props) {
                     </Typography>
                     {renderWeeklyProfitChart()}
                 </Card>
+            </div>
+            <div className={classes.flexBox}>
+                {
+                    props.logs.length > 0 && (
+                        <Card className={classes.logTable}>
+                            <div className={classes.flexRow}>
+                                <Button variant="contained" disabled={tableIndex == 0 ? true : false} onClick={() => setTableIndex(tableIndex - 1)}> Previous Day </Button>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
+                                    {props.logs[tableIndex].date} Daily Logs
+                                </Typography>
+                                <Button variant="contained" disabled={tableIndex == 6 ? true : false} onClick={() => setTableIndex(tableIndex + 1)}> Next Day </Button>
+                            </div>
+                            {renderDataTable()}
+                        </Card>
+                    )
+                }
+            </div>
+            <div className={classes.flexBox}>
+                {
+                    props.logs.length > 0 && (
+                        <Card className={classes.logTable}>
+                            <div className={classes.flexRow}>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" align='center' gutterBottom>
+                                    {props.logs[tableIndex].date} Wash Frequency
+                                </Typography>
+                            </div>
+                            {renderFrequencyTable()}
+                        </Card>
+                    )
+                }
             </div>
             <Modal
                 aria-labelledby="transition-modal-title"

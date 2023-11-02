@@ -12,7 +12,11 @@ export function* attemptPushToDB(action) {
 
     const requestUrl = `${API_URL}/api/logs`;
 
-    const log = action.payload;
+    const log = {
+        ...action.payload,
+        date: new Date(),
+    };
+
     console.log(action.payload);
     try {
         const options = {
