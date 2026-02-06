@@ -293,7 +293,6 @@ export const OPTIONAL_HANDSPRAY_WAX_OR_DOORWIPE_AND_SHINE = {
   price: 0.0,
 };
 
-
 export const FRESH_WATER_EXTERIOR = {
   name: 'Fresh Water Exterior',
   shortform: 'Fresh Water Exterior',
@@ -329,7 +328,6 @@ export const CERAMIC_HAND_SPRAY_WAX = {
   shortform: 'Ceramic Hand Spray Wax',
   price: 0.0,
 };
-
 
 export const DOOR_JAMS_WIPE = {
   name: 'Door Jams Wipe',
@@ -424,7 +422,7 @@ export const ONE_STAGE_PAINT_CORRECTION = {
 export const SERVICES = [
   {
     name: '#1 The Royal Deluxe Wash',
-    price: 48.67,
+    price: 52.99,
     includes: [
       VACUUM_INTERIOR,
       CLEAN_VINYL,
@@ -434,20 +432,20 @@ export const SERVICES = [
       POWER_DRY_AND_HAND_TOWEL,
       RIM_WASH_WIPE_TIRE_SHINE,
       CLEAN_ALL_WINDOWS,
-      FRESH_WATER_EXTERIOR
+      FRESH_WATER_EXTERIOR,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: '#2 The Royal Doors & Dash',
-    price: 39.82,
+    price: 42.99,
     includes: [
       VACUUM_INTERIOR,
       WASH_FOUR_MATS,
       CERAMIC_WAX_AND_TRIPLE_FOAM,
       QUICK_DASHBOARD_CONSOLE_AND_DOOR_WIPE,
       FRESH_WATER_EXTERIOR,
-      RIM_WASH_WIPE_TIRE_SHINE
+      RIM_WASH_WIPE_TIRE_SHINE,
     ],
     addOns: ALL_ADD_ONS,
   },
@@ -466,24 +464,28 @@ export const SERVICES = [
   {
     name: '#4 All Exterior Works',
     shortForm: 'All Exterior Works',
-    price: 30.97,
-    includes: [FRESH_WATER_EXTERIOR,
-       CERAMIC_WAX_AND_TRIPLE_FOAM,
-       POWER_AND_TOWEL_DRY,
-       POWER_WASH_MUD_GUARD_AND_RIM,
-       TIRE_SHINE_AND_RIME_WHIPE,
-       CERAMIC_HAND_SPRAY_WAX,
-       DOOR_JAMS_WIPE],
+    price: 30.99,
+    includes: [
+      FRESH_WATER_EXTERIOR,
+      CERAMIC_WAX_AND_TRIPLE_FOAM,
+      POWER_AND_TOWEL_DRY,
+      POWER_WASH_MUD_GUARD_AND_RIM,
+      TIRE_SHINE_AND_RIME_WHIPE,
+      CERAMIC_HAND_SPRAY_WAX,
+      DOOR_JAMS_WIPE,
+    ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: '#5 Exterior Grand Slam',
     shortForm: 'Exterior Grand Slam',
-    price: 19.47,
-    includes: [FRESH_WATER_EXTERIOR,
-       POWER_AND_TOWEL_DRY,
-       POWER_WASH_MUD_GUARD_AND_RIM,
-       TIRE_SHINE_AND_RIME_WHIPE],
+    price: 19.99,
+    includes: [
+      FRESH_WATER_EXTERIOR,
+      POWER_AND_TOWEL_DRY,
+      POWER_WASH_MUD_GUARD_AND_RIM,
+      TIRE_SHINE_AND_RIME_WHIPE,
+    ],
     addOns: ALL_ADD_ONS,
   },
   {
@@ -495,7 +497,7 @@ export const SERVICES = [
   },
   {
     name: 'Platnum Works',
-    price: 249.00,
+    price: 249.0,
     includes: [
       ONE_STAGE_PAINT_CORRECTION,
       FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS,
@@ -507,13 +509,13 @@ export const SERVICES = [
       SHAMPOOING_AND_STEAMING_INTERIOR,
       SHAMPOO_CARPET_AND_MAT,
       VACUUM_INTERIOR,
-      VINYL_SHINE
+      VINYL_SHINE,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'Gold Works',
-    price: 249.00,
+    price: 249.0,
     includes: [
       FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS,
       MINIMAL_RUST_FLEAS_REMOVAL,
@@ -525,13 +527,13 @@ export const SERVICES = [
       SHAMPOO_CARPET_AND_MAT,
       VACUUM_INTERIOR,
       PAINT_SEALANT,
-      VINYL_SHINE
+      VINYL_SHINE,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'Silver Works',
-    price: 160.00,
+    price: 160.0,
     includes: [
       SHAMPOOING_AND_STEAMING_INTERIOR,
       SHAMPOO_CARPET_AND_MAT,
@@ -540,31 +542,31 @@ export const SERVICES = [
       FRESH_WATER_EXTERIOR,
       POWER_DRY_AND_HAND_TOWEL,
       POWER_WASH_MUD_GUARD_AND_RIM,
-      TIRE_SHINE_AND_RIME_CLEAN
+      TIRE_SHINE_AND_RIME_CLEAN,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'The Budget Special',
-    price: 99.00,
+    price: 99.0,
     includes: [
       SHAMPOO_SEATS_OR_FLOOR_OR_CONDITION_SEATS,
       CLEAN_ALL_VINYL,
       VACUUM_INTERIOR,
       WASH_RUBBER_MATS,
-      TIRE_SHINE_AND_RIME_WHIPE
+      TIRE_SHINE_AND_RIME_WHIPE,
     ],
     addOns: ALL_ADD_ONS,
   },
   {
     name: 'Leather Protection',
-    price: 150.00,
+    price: 150.0,
     includes: [
       VACUUM_FLOOR,
       MATT_WASH,
       WIPE_ALL_VINYL,
       CERAMIC_COATING_LEATHER,
-      RIM_WASH_WIPE_TIRE_SHINE
+      RIM_WASH_WIPE_TIRE_SHINE,
     ],
     addOns: ALL_ADD_ONS,
   },
