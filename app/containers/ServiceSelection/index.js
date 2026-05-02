@@ -1,8 +1,10 @@
-/* eslint-disable react/prop-types, eqeqeq, no-shadow, react/no-array-index-key, react/no-unescaped-entities, no-unused-vars */
 import React, { memo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 import Check from '@material-ui/icons/Check';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
@@ -35,7 +37,6 @@ import {
   setBaseService,
 } from './actions';
 import ReceiptDisplay from '../../components/ReceiptDisplay';
-import DepositSlip from '../../components/DepositSlip';
 import { ADMIN_PIN } from '../../constants';
 import NumberTicket from '../../components/NumberTicket';
 
@@ -285,14 +286,14 @@ const key = 'ServiceSelectionPage';
 
 function ServiceSelectionPage(props) {
   const componentRef = useRef();
-  const componentRefCash = useRef();
-  const componentRefDeposit = useRef();
   const componentButton1 = useRef();
   const componentButton2D = useRef();
   const componentButton2W = useRef();
   const componentButton2DS = useRef();
   const componentButton3 = useRef();
   const componentButton4 = useRef();
+  const componentButton5 = useRef();
+  const componentButton6 = useRef();
 
   useInjectReducer({ key, reducer });
 
@@ -317,27 +318,10 @@ function ServiceSelectionPage(props) {
     props.onClickSetBaseService(service);
   };
 
-  const handleAfterPrint = (paymentMethod = 'unspecified') => {
+  const handleAfterPrint = log => {
     setActiveStep(0);
-    props.onAddToLogs({
-      baseService: props.baseService,
-      addOns: props.addOns,
-      paymentMethod,
-    });
+    props.onAddToLogs(log);
     props.onClickResetAll(null);
-  };
-
-  const handleAfterPrintDeposit = () => {
-    props.onAddToLogs({
-      isDeposit: true,
-      depositLog: {
-        name: 'Deposit',
-        price: 50,
-        isDeposit: true,
-        paymentMethod: 'cash',
-        addOns: [],
-      },
-    });
   };
 
   const onCloseModal = () => {
@@ -475,36 +459,42 @@ function ServiceSelectionPage(props) {
               )}
               content={() => componentButton4.current}
             />
-            <NumberTicket
-              number={1}
-              addOns={props.addOns}
-              ref={componentButton1}
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  5
+                </Button>
+              )}
+              content={() => componentButton5.current}
             />
-            <NumberTicket
-              number="2D"
-              addOns={props.addOns}
-              ref={componentButton2D}
+            <ReactToPrint
+              trigger={() => (
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                <Button
+                  variant="contained"
+                  color="white"
+                  className={classes.numberTicketButton}
+                >
+                  6
+                </Button>
+              )}
+              content={() => componentButton6.current}
             />
-            <NumberTicket
-              number="2W"
-              addOns={props.addOns}
-              ref={componentButton2W}
-            />
-            <NumberTicket
-              number="2DS"
-              addOns={props.addOns}
-              ref={componentButton2DS}
-            />
-            <NumberTicket
-              number="3"
-              addOns={props.addOns}
-              ref={componentButton3}
-            />
-            <NumberTicket
-              number={4}
-              addOns={props.addOns}
-              ref={componentButton4}
-            />
+            <NumberTicket number={1} addOns={props.addOns} ref={componentButton1} />
+            <NumberTicket number="2D"  addOns={props.addOns} ref={componentButton2D} />
+            <NumberTicket number="2W"  addOns={props.addOns} ref={componentButton2W} />
+            <NumberTicket number="2DS" addOns={props.addOns}  ref={componentButton2DS} />
+            <NumberTicket number="3" addOns={props.addOns}  ref={componentButton3} />
+            <NumberTicket number={4}  addOns={props.addOns} ref={componentButton4} />
+            <NumberTicket number={5} addOns={props.addOns}  ref={componentButton5} />
+            <NumberTicket number={6}  addOns={props.addOns} ref={componentButton6} />
           </div>
           <div>
             {activeStep === steps.length ? (
@@ -554,17 +544,10 @@ function ServiceSelectionPage(props) {
             ref={componentRef}
           />
         </div>
-        <div style={{ display: 'none' }}>
-          <ReceiptDisplay
-            baseService={props.baseService}
-            addOns={props.addOns}
-            paymentMethod="cash"
-            ref={componentRefCash}
-          />
-          <DepositSlip amount={50} ref={componentRefDeposit} />
-        </div>
         <ReactToPrint
           trigger={() => (
+            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+            // to the root node of the returned component as it will be overwritten.
             <Button
               variant="contained"
               color="primary"
@@ -575,34 +558,7 @@ function ServiceSelectionPage(props) {
             </Button>
           )}
           content={() => componentRef.current}
-          onAfterPrint={() => handleAfterPrint('unspecified')}
-        />
-        <ReactToPrint
-          trigger={() => (
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.printButton}
-              disabled={!props.baseService}
-            >
-              Print Cash
-            </Button>
-          )}
-          content={() => componentRefCash.current}
-          onAfterPrint={() => handleAfterPrint('cash')}
-        />
-        <ReactToPrint
-          trigger={() => (
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.printButton}
-            >
-              Print $50 Deposit Slip
-            </Button>
-          )}
-          content={() => componentRefDeposit.current}
-          onAfterPrint={handleAfterPrintDeposit}
+          onAfterPrint={() => handleAfterPrint(props.baseService)}
         />
       </Grid>
       <Modal

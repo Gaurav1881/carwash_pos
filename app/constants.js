@@ -372,8 +372,8 @@ export const CERAMIC_COATING_LEATHER = {
 };
 
 export const SHAMPOO_SEATS_OR_FLOOR_OR_CONDITION_SEATS = {
-  name: 'Shampoo seats or floor or condition seats',
-  shortform: 'Shampoo seats or floor or condition seats',
+  name: 'Smp seats or floor or cnd seats',
+  shortform: 'Smp seats or floor or cnd seats',
   price: 0.0,
 };
 
@@ -384,8 +384,8 @@ export const SHAMPOOING_AND_STEAMING_INTERIOR = {
 };
 
 export const FABRIC_SEAT_GUARD_AND_COND_LEATHER_SEATS = {
-  name: 'Fabric Seat Guard/Condition Leather Seats',
-  shortform: 'Fabric Seat Guard/Condition Leather Seats',
+  name: 'Fabric Seat Guard/Cnd Leather Seats',
+  shortform: 'Fabric Seat Guard/Cnd Leather Seats',
   price: 0.0,
 };
 
@@ -450,7 +450,19 @@ export const SERVICES = [
     addOns: ALL_ADD_ONS,
   },
   {
-    name: '#3 All Exterior Works',
+    name: '#3 The Royal Super Wash',
+    price: 30.97,
+    includes: [
+      VACUUM_INTERIOR_NO_TRUNK,
+      FRESH_WATER_EXTERIOR,
+      QUICK_DASHBOARD_AND_CONSOLE_WIPE,
+      WASH_FOUR_MATS,
+      POWER_DRY_AND_HAND_TOWEL,
+    ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: '#4 All Exterior Works',
     shortForm: 'All Exterior Works',
     price: 30.99,
     includes: [
@@ -465,7 +477,7 @@ export const SERVICES = [
     addOns: ALL_ADD_ONS,
   },
   {
-    name: '#4 Exterior Grand Slam',
+    name: '#5 Exterior Grand Slam',
     shortForm: 'Exterior Grand Slam',
     price: 19.99,
     includes: [
@@ -474,6 +486,13 @@ export const SERVICES = [
       POWER_WASH_MUD_GUARD_AND_RIM,
       TIRE_SHINE_AND_RIME_WHIPE,
     ],
+    addOns: ALL_ADD_ONS,
+  },
+  {
+    name: '#6 Basic Exterior Wash',
+    shortForm: 'Bsc Ext Wash',
+    price: 13.27,
+    includes: [FRESH_WATER_EXTERIOR, POWER_AND_TOWEL_DRY],
     addOns: ALL_ADD_ONS,
   },
   {
@@ -514,7 +533,7 @@ export const SERVICES = [
   },
   {
     name: 'Silver Works',
-    price: 190.0,
+    price: 160.0,
     includes: [
       SHAMPOOING_AND_STEAMING_INTERIOR,
       SHAMPOO_CARPET_AND_MAT,
