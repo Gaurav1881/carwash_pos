@@ -1,15 +1,11 @@
+/* eslint-disable react/prop-types, react/no-array-index-key */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { number } from 'prop-types';
 import moment from 'moment';
-import { COMPANY_NAME, HST, SERVICES } from '../../constants';
+import { COMPANY_NAME, HST } from '../../constants';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '65mm',
     marginLeft: '0mm',
@@ -65,7 +61,7 @@ const styles = theme => ({
   },
   loyalty: {
     padding: '20px',
-  }
+  },
 });
 
 class ReceiptDisplay extends React.Component {
@@ -142,7 +138,9 @@ class ReceiptDisplay extends React.Component {
               {this.props.baseService &&
                 this.props.baseService.includes.map((included, index) => (
                   <tr key={index}>
-                    <td className={classes.includesCol} colSpan={2}>-{included.name}</td>
+                    <td className={classes.includesCol} colSpan={2}>
+                      -{included.name}
+                    </td>
                   </tr>
                 ))}
             </tr>
@@ -151,8 +149,12 @@ class ReceiptDisplay extends React.Component {
             )}
             {addOns.map((addon, index) => (
               <tr key={index}>
-                <td className={classes.itemCol}>+ {addon.quantity}x {addon.name}</td>
-                <td className={classes.priceCol}>${(addon.price * addon.quantity).toFixed(2)}</td>
+                <td className={classes.itemCol}>
+                  + {addon.quantity}x {addon.name}
+                </td>
+                <td className={classes.priceCol}>
+                  ${(addon.price * addon.quantity).toFixed(2)}
+                </td>
               </tr>
             ))}
             <tr>
@@ -172,6 +174,16 @@ class ReceiptDisplay extends React.Component {
               <td className={classes.itemCol}>Total</td>
               <td className={classes.priceCol}>${total.toFixed(2)}</td>
             </tr>
+            {this.props.paymentMethod === 'cash' && (
+              <tr>
+                <td className={classes.itemCol}>
+                  <b>Paid: Cash</b>
+                </td>
+                <td className={classes.priceCol}>
+                  <b>${total.toFixed(2)}</b>
+                </td>
+              </tr>
+            )}
           </tbody>
           <tbody className={classes.loyalty}>
             <tr>
@@ -186,8 +198,9 @@ class ReceiptDisplay extends React.Component {
             </tr>
             <tr>
               <td colSpan={2}>
-                If you get 5 car washes within a year then the 6th one is free! To track your
-                washes please provide the cashier with your phone number
+                If you get 5 car washes within a year then the 6th one is free!
+                To track your washes please provide the cashier with your phone
+                number
               </td>
             </tr>
           </tbody>
@@ -198,9 +211,7 @@ class ReceiptDisplay extends React.Component {
               </td>
             </tr>
             <tr>
-              <td colSpan={2}>
-                This is not an official receipt!
-              </td>
+              <td colSpan={2}>This is not an official receipt!</td>
             </tr>
             <tr>
               <td colSpan={2}>
@@ -209,59 +220,65 @@ class ReceiptDisplay extends React.Component {
             </tr>
           </tbody>
           <tbody className={classes.tableBody}>
-          <tr>
-            <td colSpan={2}>
-              <hr className={classes.dashedHr}/>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2} className={classes.sectionTwoHeader}>
-              STORE COPY
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2} className={classes.header}>
-              <div className={classes.companyName}>
-                {COMPANY_NAME}
-                <div>{this.state.time.format('MM/DD/YYYY hh:mm:ss A')}</div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td className={classes.itemCol}>
-              {this.props.baseService ? this.props.baseService.name : ''}
-            </td>
-            <td className={classes.priceCol}>
-              {this.props.baseService
-                ? `$${this.props.baseService.price.toFixed(2)}`
-                : ''}
-            </td>
-          </tr>
-          <tr>
-            <td className={classes.itemCol}>
-              AddOns
-            </td>
-            <td className={classes.priceCol}>
-              ${addOnsTotal.toFixed(2)}
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <hr />
-            </td>
-          </tr>
-          <tr>
-            <td className={classes.itemCol}>Subtotal</td>
-            <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td className={classes.itemCol}>HST</td>
-            <td className={classes.priceCol}>${hst.toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td className={classes.itemCol}>Total</td>
-            <td className={classes.priceCol}>${total.toFixed(2)}</td>
-          </tr>
+            <tr>
+              <td colSpan={2}>
+                <hr className={classes.dashedHr} />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2} className={classes.sectionTwoHeader}>
+                STORE COPY
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2} className={classes.header}>
+                <div className={classes.companyName}>
+                  {COMPANY_NAME}
+                  <div>{this.state.time.format('MM/DD/YYYY hh:mm:ss A')}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.itemCol}>
+                {this.props.baseService ? this.props.baseService.name : ''}
+              </td>
+              <td className={classes.priceCol}>
+                {this.props.baseService
+                  ? `$${this.props.baseService.price.toFixed(2)}`
+                  : ''}
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.itemCol}>AddOns</td>
+              <td className={classes.priceCol}>${addOnsTotal.toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <hr />
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.itemCol}>Subtotal</td>
+              <td className={classes.priceCol}>${subtotal.toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td className={classes.itemCol}>HST</td>
+              <td className={classes.priceCol}>${hst.toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td className={classes.itemCol}>Total</td>
+              <td className={classes.priceCol}>${total.toFixed(2)}</td>
+            </tr>
+            {this.props.paymentMethod === 'cash' && (
+              <tr>
+                <td className={classes.itemCol}>
+                  <b>Paid: Cash</b>
+                </td>
+                <td className={classes.priceCol}>
+                  <b>${total.toFixed(2)}</b>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
